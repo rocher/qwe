@@ -1,0 +1,68 @@
+.cfg.header
+.cfg.prj.name           QWE
+.cfg.prj.brief          QWE's not WEB for Emacs
+.cfg.prj.version        0.9.5-pre06
+.cfg.prj.author.name    Francesc Rocher
+.cfg.prj.website        [[http://github.com/rocher/qwe]]
+.cfg.prj.keywords       {e/QWE, literate programming, literate software engineering,}
+.cfg.prj.keywords       {e/software documentation, documentation generation,}
+.cfg.prj.keywords       {e/lightweight markup language}
+.cfg.prj.file           NEWS
+.cfg.prj.file.desc      History of user-visible changes
+.cfg.prj.copyright      Copyright (C) 2004-2020  Francesc Rocher
+.cfg.prj.license        GPL v3
+.cfg.prj.license++
+.ver This file is part of QWE.
+.ver
+.ver QWE is free software: you can redistribute it and/or modify
+.ver it under the terms of the GNU General Public License as published by
+.ver the Free Software Foundation, either version 3 of the License, or
+.ver (at your option) any later version.
+.ver
+.ver QWE is distributed in the hope that it will be useful,
+.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.ver GNU General Public License for more details.
+.ver
+.ver You should have received a copy of the GNU General Public License
+.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+.cfg.prj.license--
+.cfg.doc.style           article
+.cfg.doc.show.delimiters invisible
+.cfg.header.end          [[qwe:hdr-update][update]]
+.cmt ______________________________________________________________________
+.cmt
+.ttl          QWE News
+.stl History of user-visible changes
+
+
+.toc.begin Table of Contents
+
+.toc.sec       1. Changes in QWE 0.9.5
+.toc.sse             1.1. Changes in QWEB
+.toc.end {Z/ update ToC }
+
+
+.sec 1. Changes in QWE 0.9.5
+
+.sse 1.1. Changes in QWEB
+
+.Li1 {b/Recursion detection} among qweb-blocks. When detected, an error message
+.li1 is inserted and the translation process stops.
+.cmt
+.Li1 {b/Undefined qweb-blocks} are substituted with a  warning message.
+.cmt
+.Li1 Default value of {v/qweb-mark-eobq} is {s/"no"}.
+
+This is the first public release. Work goes on with the completion of user
+interface, documentation and overall improvement of the implementation.
+
+.cmt ______________________________________________________________________
+.cmt
+.cfg.footer
+.cfg.mode Local Variables:
+.cfg.mode mode: text
+.cfg.mode qwe-delimiter-tag: ""
+.cfg.mode mode: qwe
+.cfg.mode End:
+.bbx NEWS file ends here

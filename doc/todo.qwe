@@ -1,0 +1,422 @@
+.cfg.header
+.cfg.prj.name           QWE
+.cfg.prj.brief          QWE's not WEB for Emacs
+.cfg.prj.version        0.9.5-pre06
+.cfg.prj.author.name    Francesc Rocher
+.cfg.prj.homepage       [[http://github.com/rocher/qwe]]
+.cfg.prj.keywords       {e/QWE, literate programming, literate software engineering,}
+.cfg.prj.keywords       {e/software documentation, documentation generation,}
+.cfg.prj.keywords       {e/lightweight markup language}
+.cfg.prj.file           {t/todo.qwe}
+.cfg.prj.file.desc      Items to do before next release
+.cfg.prj.copyright      Copyright (C) 2004-2020  Francesc Rocher
+.cfg.prj.license        GPL v3
+.cfg.prj.license++
+.ver This file is part of QWE.
+.ver
+.ver QWE is free software: you can redistribute it and/or modify
+.ver it under the terms of the GNU General Public License as published by
+.ver the Free Software Foundation, either version 3 of the License, or
+.ver (at your option) any later version.
+.ver
+.ver QWE is distributed in the hope that it will be useful,
+.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.ver GNU General Public License for more details.
+.ver
+.ver You should have received a copy of the GNU General Public License
+.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+.cfg.prj.license--
+.cfg.doc.style           book
+.cfg.doc.show.delimiters invisible
+.cfg.header.filename     ../header.qwe
+.cfg.header.end          [[qwe:hdr-update][update]]
+.cmt _____________________________________________________________________________
+.cmt
+.ttl TODO Item List
+.cmt
+.abs This is a list of things to do. Items are sorted by relevance into {e/urgent},
+.abs {e/high}, {e/medium} or {e/low}. Each item has associated a difficulty level that
+.abs can be {e/easy}, {e/medium}, {e/difficult} or {e/don't know}. Along with the name
+.abs appears the difficulty level label '{e/e}', '{e/m}', '{e/d}' or '{e/?}', respectively.
+.cmt
+.cmt
+.toc.begin Table of Contents
+
+.toc.chp       1. Urgent
+
+.toc.sec             1.1. Documentation (m)
+
+.toc.sec             1.2. QWEB (m)
+
+.toc.sec             1.3. QWE Modules (m)
+
+.toc.sec             1.4. Hooks (m)
+
+.toc.sec             1.5. Configuration (m)
+
+.toc.sec             1.6. QWE command (e)
+
+.toc.sec             1.7. Header and Footer
+
+.toc.chp       2. High
+
+.toc.sec             2.1. Continuation lines (m)
+
+.toc.sec             2.2. References (e)
+
+.toc.sec             2.3. Index Entries (e)
+
+.toc.sec             2.4. Refer Sections by Number (m)
+
+.toc.sec             2.5. Make Menu (d)
+
+.toc.sec             2.6. Ouput Formats and Translations (?)
+
+.toc.chp       3. Medium
+
+.toc.sec             3.1. Indexes (d)
+
+.toc.sec             3.2. Master File (d)
+
+.toc.sec             3.3. Toolbar (m)
+
+.toc.sec             3.4. Right Button (m)
+
+.toc.sec             3.5. Tables, Lists and Captions (m)
+
+.toc.sec             3.6. Label Display (d)
+
+.toc.sec             3.7. Multiline Paragraphs (d)
+
+.toc.sec             3.8. Active Maps (?)
+
+.toc.chp       4. Low
+
+.toc.sec             4.1. Link with org-mode (d)
+
+.toc.sec             4.2. Fringe Indicators (d)
+
+.toc.sec             4.3. Semantic (?)
+
+.toc.sec             4.4. Imenu (?)
+
+.toc.sec             4.5. SpeedBar (?)
+
+.toc.sec             4.6. Target Format Commands (?)
+
+.toc.chp       5. Unclassified Ideas
+
+.toc.sec             5.1. Project Management (?)
+
+.toc.sec             5.2. Traceability (?)
+
+.toc.sec             5.3. Eclipse (??)
+.toc.end {Z/ update ToC }
+.cmt
+.cmt
+.chp 1. Urgent
+{g/ Things to be done before next release. }
+
+.sec 1.1. Documentation (m)
+Arrange all documents, examples and manuals. Review them. Put references to
+them in the [[file:../index.qwe][index.qwe]] file. Review ALL contents and cites. Pre-release of a
+requirements document.
+
+.sec 1.2. QWEB (m)
+Finnish implementation, user manual and examples. Let some complex
+functionality not implemented, if necessary.
+
+.sec 1.3. QWE Modules (m)
+Rearrange distribution of code and data, specially between [[file:][qwe-data.el]],
+[[file:][qwe-lang.el]] and [[file:][qwe-elt.el]].
+
+.sec 1.4. Hooks (m)
+Define a coherent set of hooks before/after certain actions.
+
+.sec 1.5. Configuration (m)
+Migrate from a set of initialization variables to a set of portable config
+items and use them to initialize document presentation, numbering, etc.
+
+.sec 1.6. QWE command (e)
+Define a {t/QWE} command to automatically printout {t/QWE} (as the command {t/\LaTeX} in
+{t/LaTeX}). Then, substitute all occurrences of {t/`[t/QWE]'} with this command.
+
+.sec 1.7. Header and Footer
+Define how to work with headers and footers. Consider to
+
+.Li1 Skip them when a link opens a file, always or simply when opened?
+.Li1 Bring the user the possibility to show/hide them?
+.Li1 Insert them automatically from other files or templates?
+
+
+.chp 2. High
+{g/ Things to be done immediately after the next release. }
+
+.sec 2.1. Continuation lines (m)
+Treat contiguous lines the same entry for chapter, sections, etc. Thus, two
+or more lines with the same section entry will be considered as if it would
+be only one when creating table of contents, indexes, numbering, etc.
+
+.sec 2.2. References (e)
+Use annotations and decorations as anchors such that links can refer to
+them. For example, a valid link could point to a tip as
+{t/[_[tip:][text]]}. Or maybe it would be better a generic form, like
+{t/[_[label:type][text]]}, where {t/type} refers to the name (tip, note, warning,
+todo, etc)?. This form can grow dynamically the list of types to search
+for. Indeed, why not write anchors as annotations? Or simply eliminate
+them when links can refer to {e/labels}?
+
+    .war Partially implemented
+    Anchors can be used as labels with .ver '{ a/ ...}'
+
+
+.sec 2.3. Index Entries (e)
+Make new decoration type {e/index}, {t/`.idx.pl-construct entry-name'} to define
+index entries with {e/name} in the {e/Index of pl-construct}.
+
+It would be nice to introduce groups/packages/namespaces? Like this
+(assuming {e/elisp}):
+
+.ver     (defun bitand (list)   .idx.fn/bitwise bitand
+.ver        ...
+.ver     (defun bitor (list)    .idx.fn/bitwise bitor
+
+The index would look like this (note that there are also links to the
+index definitions):
+
+     {b/Index of Functions}
+
+        {e/bitwise}
+           [[idx:fn/bitwise][bitand]]
+           [[idx:fn/bitwise][bitor]]
+           ...
+
+External tool could fill appropriate defintions of the form
+{t/'.idx.fn/namespace'}.
+
+.sec 2.4. Refer Sections by Number (m)
+Add a new way for links to refer to numbered sections, such that links of
+the form
+
+.ver     [[chp:#3][chapter 3]]  or  [[chp:#3][Capítulo 3]]
+
+can both refer to the chapter number 3. Technically, this would be linked
+with the {t/QWE} element {t/'<qwe-delimiter>.chp[ \t]+3\.'}, in the same
+file. External links must be allowed, as well:
+
+.ver     [[file:Chp3.txt,chp:#3][chapter number three]]
+
+In the case of sections, subsections and subsubsections, section numbering
+depends on the document style, so a section number can have one or more
+numbers separated by dots, depending on the style (article/book). It is up
+to the user the task to initially put the correct numbers. Renumbering
+could handle the change of existing links.
+
+It is necessary to restrict the search. For example, lets suppose the user
+wants to refer to section 3 of the same chapter (number 5). The section
+would appear numbered as 5.3, so the link
+
+.ver     [[sec:#3][section 3]] of this chapter
+
+should refer to section 5.3.
+
+.sec 2.5. Make Menu (d)
+The {t/make} menu should renumber sections according to custom variables,
+rescan {t/QToC} menu, resolv and update references, renumber numberd lists and
+(optionally) recourse all these tasks across project files.
+
+.sec 2.6. Ouput Formats and Translations (?)
+Specify languages and conditions of translations: {t/qwe2html}, {t/qwe2latex},
+{t/qwe2pdflatex}, {t/qwe2doxygen}, etc. In case to translate to {t/xml}, define the
+associated {t/DTD}. These commands should be implemented using {t/C}, {t/flex} and
+{t/bison}. Consider also having output formats for {t/LyX} and {t/odf} (oasis?).
+
+This needs a complete and closed (but opened to extensions) specification
+of {t/QWE} as a markup language.
+
+
+.chp 3. Medium
+
+.sec 3.1. Indexes (d)
+Generate several indexes, one per context: Images, tables, functions,
+glossary, requirements, use cases, etc.
+
+This needs a clear way to define what elements are index-able.
+
+.sec 3.2. Master File (d)
+Choose between a master file to define a project (for example {t/index.qwe})
+or having a reference to a master document on each project file. (The
+first option seems better because each file is independent of the master
+one and can be processed separately).
+
+.war Partially implemented as option one
+
+Create a "place" to store generic document properties: type of generated
+output (LaTeX, html), paper size (letter, A4), language, etc.
+
+.sec 3.3. Toolbar (m)
+Create a toolbar with formatting buttons and browsing capabilities: insert
+section, bold format, previous reference, goto next section, etc.
+
+.sec 3.4. Right Button (m)
+Integrate tool-bar and menu functions into a unique (right-button) popup
+menu.
+
+.sec 3.5. Tables, Lists and Captions (m)
+Try to do simple table, list (bullets and numbers) and caption
+support. For example:
+
+.ver    QWE COMMAND    ACTION
+.ver    -----------    ------------------------------
+.ver    .li.beg        reset numbering list item to 1
+.ver    .li            numbered list item
+.ver    .ul            unnumbered list item
+.ver    .tab.ttl       table title row
+.ver    .tab.row       white row
+.ver    .tab.cap       Table caption
+.ver    .fig.cap       Figure caption
+
+    .war Tables partially implemented using character formatting
+    See section [[file:../qwe-elt.el,sss:][Table Character Formatting]].
+
+    .war Lists implemented at 95%
+    List items, using {t/'.li}{e/N}{t/'}, where {e/N} can be [1-4], and numbered items, using
+    {t/'.ni}{e/N}{t/'}, where {e/N} can be [1-4]. Numbering of items still pending.
+
+.todo Customizable variables should display bullets in different levels ...
+
+.sec 3.6. Label Display (d)
+Try to show label indicators in the fringe (see [[file:qwe-data.el,a:][display-fringe]]) and in the
+left margin. The display property should be managed differently.
+
+.sec 3.7. Multiline Paragraphs (d)
+Add multiline support for paragraphs and environments to not to repeat the
+same tag at the beginning of every line, (do not confuse this with
+[[sse:][Continuation lines (m)]]). With multiline support user should be allowed to
+write start and end tags. For instance,
+
+.ver   .qwe.new+
+.ver       Inside 'new' context
+.ver   .qwe.end-
+
+The first application of this is {t/new}, {t/rev} and {t/old} contexts, a convenient
+way to signalize code as new, revised or old. There is previous a
+work/test about this:
+
+.ver .sec.face qwe-face-new-text
+.ver
+.ver (defface qwe-face-new-text
+.ver   '((t (:background "lemon chiffon")))
+.ver   "*Face to display new code.
+.ver You can mark the start and the end of new code chunks using
+.ver multiline paragraphs. Use 'qwe.new+' at the beginning and
+.ver 'qwe.new-' at the end (put each mark on a separate line)"
+.ver  :group 'qwe-basic-faces)
+.ver
+.ver .sec.face qwe-face-rev-text
+.ver
+.ver (defface qwe-face-rev-text
+.ver   '((t (:background "light cyan")))
+.ver   "*Face to display code to be revised.
+.ver You can mark the start and the end of code chunks to be
+.ver revised (probably by other programmers) using multiline
+.ver paragraphs. Use 'qwe.rev+' at the beginning and 'qwe.rev-' at the
+.ver end (put each mark on a separate line)"
+.ver  :group 'qwe-basic-faces)
+.ver
+.ver .sec.face qwe-face-old-text
+.ver
+.ver (defface qwe-face-old-text
+.ver   '((t (:background "gainsboro")))
+.ver   "*Face to display deprecated code.
+.ver You can mark the start and the end of deprecated code chunks
+.ver using multiline paragraphs. Use 'qwe.old+' at the beginning and
+.ver 'qwe.old-' at the end (put each mark on a separate line)"
+.ver  :group 'qwe-basic-faces)
+
+{e/lgrep} for [[elisp:(lgrep "multiline" "*.el" "./")][multiline]] to see more on this around the code.
+
+.sec 3.8. Active Maps (?)
+Investigate if there is the possibility to use {e/active maps} as in {t/html}: user
+clicks on a image and some function receive the event along with the
+coordinates (relatives to the image) as parameters.
+
+YES, it is. See [[info:][(elisp)Image Descriptors]]
+
+
+.chp 4. Low
+
+.sec 4.1. Link with org-mode (d)
+Provide a module to link {t/QWE} with {t/org-mode}. A variable should indicate the
+{t/org} file to wich the current {t/QWE} file is linked to. Several functions should be
+provided to
+
+.li1 Gather {t/TODO} items and put them into the org-file
+
+.li1 change {t/TODO} items to {t/DONE} ({t/DONE} should be another annotation?) in the {t/QWE}
+.li1 file when completed (including {t/CLOSE} comments and timestamps), search by
+.li1 org-Id, allow cross-links, clocking work time, etc.
+
+Maybel this should be done in a {e/separate extension}, {t/qwe-org}, distributed
+along with {t/QWE}.
+
+.sec 4.2. Fringe Indicators (d)
+Use some sort of fringe indicators to make a new visualization mode
+(invisible, text, label and {e/fringe}).
+
+There is a previous work/test about this:
+
+.ver (define-fringe-bitmap 'qwe-fringe-indicator [ 24 60 60 24 ])
+.ver (set-fringe-bitmap-face 'qwe-fringe-indicator)
+.ver
+.ver (defconst qwe-face-spec-delimiter-common
+.ver   '(invisible qwe--delimiter
+.ver               front-sticky nil
+.ver               rear-nonsticky t
+.ver               display (left-fringe qwe-fringe-indicator)))
+
+.sec 4.3. Semantic (?)
+Investigate the possibility to use {t/semantic}, part of {t/CEDET} (see
+[[http://cedet.sf.net][cedet.sf.net]]), to generate some sort automatic documentation.
+
+.sec 4.4. Imenu (?)
+Investigate how to construct the {t/QToC} menu according to certain
+regexps. More or less the same way {t/Imenu} does. Or better, try to define
+new regexps to force {t/Imenu} parse {t/QWE} documents. Would be there any
+advantage in doing so?
+
+.sec 4.5. SpeedBar (?)
+Investigate the advantages of using the speedbar to classify and navigate
+elements by context.
+
+.sec 4.6. Target Format Commands (?)
+Study the convenience to include specific tags or controls to direct
+commands to the target format (html, doxygen, LaTeX, etc).
+
+
+.chp 5. Unclassified Ideas
+{g/ Towards a complete literate software engineering tool ... }
+
+.sec 5.1. Project Management (?)
+Try to make a better integration with control version systems ({t/cvs},
+{t/subversion}) and {t/org-mode}, etc. As a basic start, provide a new hyperlink
+type for {t/org-mode} to link to {t/QWE} files.
+
+.sec 5.2. Traceability (?)
+Decide if there should be an easy and clear mechanism, implemented as an
+external tool using {t/QWE}'s mechanisms, to trace requirements into
+code. Even the possibility to generate a traceability matrix.
+
+.sec 5.3. Eclipse (??)
+What about {t/QWE} ported to {t/Eclipse}?: {e/QWE's not WEB for Eclipse}.
+
+.cmt _____________________________________________________________________________
+.cmt
+.cfg.footer
+.cfg.mode Local Variables:
+.cfg.mode mode: text
+.cfg.mode qwe-delimiter-tag: ""
+.cfg.mode mode: qwe
+.cfg.mode End:
+.bbx todo.qwe ends here

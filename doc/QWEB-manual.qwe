@@ -1,0 +1,800 @@
+.cfg.header
+.cfg.prj.name           QWE
+.cfg.prj.brief          QWE's not WEB for Emacs
+.cfg.prj.version        0.9.5-pre06
+.cfg.prj.author.name    Francesc Rocher
+.cfg.prj.homepage       [[http://github.com/rocher/qwe]]
+.cfg.prj.keywords       {e/QWE, literate programming, literate software engineering,}
+.cfg.prj.keywords       {e/software documentation, documentation generation,}
+.cfg.prj.keywords       {e/lightweight markup language}
+.cfg.prj.file           {t/qweb-manual.el}
+.cfg.prj.file.desc      {t/QWEB} user manual
+.cfg.prj.copyright      Copyright (C) 2004-2020  Francesc Rocher
+.cfg.prj.license        GPL v3
+.cfg.prj.license++
+.ver This file is part of QWE.
+.ver
+.ver QWE is free software: you can redistribute it and/or modify
+.ver it under the terms of the GNU General Public License as published by
+.ver the Free Software Foundation, either version 3 of the License, or
+.ver (at your option) any later version.
+.ver
+.ver QWE is distributed in the hope that it will be useful,
+.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.ver GNU General Public License for more details.
+.ver
+.ver You should have received a copy of the GNU General Public License
+.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+.cfg.prj.license--
+.cfg.doc.style           book
+.cfg.doc.show.delimiters invisible
+.cfg.header.filename     ../header.qwe
+.cfg.header.end          [[qwe:hdr-update][update]]
+.cmt _____________________________________________________________________________
+.cmt
+.ttl QWEB User Manual
+
+.warning --- THIS FILE REQUIRES A REVISION ---
+
+.todo QUOTATION HERE
+
+.toc.begin Table of Contents
+
+.toc.chp       1. Introduction
+
+.toc.chp       2. Main Concepts
+
+.toc.chp       3. Basic Usage
+
+.toc.sec             3.1. qweb-block definitions
+
+.toc.sec             3.2. qweb-block aggregations
+
+.toc.sec             3.3. qweb-block references
+
+.toc.chp       4. Configuration items
+
+.toc.sec             4.1. Main program name
+
+.toc.sec             4.2. Output file
+
+.toc.sec             4.3. Importing files
+
+.toc.chp       5. Advanced Features
+
+.toc.sec             5.1. Rewriting rules
+.toc.sse                   5.1.1. Variables
+.toc.sss                         5.1.1.1. Order of substitution
+.toc.sss                         5.1.1.2. External Variables
+.toc.sse                   5.1.2. Parameter passing
+
+.toc.chp       A. QWEB {e/compilation}
+.toc.end {Z/ update ToC }
+.cmt
+.cmt
+.chp 1. Introduction
+This manual describes how to write {t/QWEB} documents and programs.  {t/QWEB} is a
+{t/QWE} extension that makes it possible to use literate programming techniques
+along with {t/QWE} documents. Features supported by {t/QWEB} are:
+
+.li1 Very easy to use and gracefully integrated into {t/QWE}
+
+.li1 Highly configurable using {e/config items} provided by {t/QWE}
+
+.li1 A multi-file approach using {e/import} items makes it very flexible and
+.li1 enforces code reuse
+
+.li1 Programming-language independent: can be used with virtually every
+.li1 programming language, as {t/QWE} itself
+
+.li1 All {e/qweb-block} definitions can be written using a variable number of
+.li1 parameters.
+
+.li1 Parameters can get their values from global contants
+
+At this point, these features may seem unclear. Next sections try to clarify
+what they mean.
+
+
+.chp 2. Main Concepts
+The main concept of the literate programming paradigm is that programs
+intended to be read by humans must be written for humans, not computers. The
+difference resides in the order of exposition of concepts, ideas and
+artifacts used to make the program.
+
+.quo                               The practitioner of literate programming
+.quo                     can be regarded as an essayist, whose main concern
+.quo                     is with exposition and excellence of style. Such an
+.quo                     author, with thesaurus in hand, chooses the names of
+.quo                     variables carefully and explains what each variable
+.quo                     means. He or she strives for a program that is
+.quo                     comprehensible because its concepts have been
+.quo                     introduced in an order that is best for human
+.quo                     understanding, using a mixture of formal and
+.quo                     informal methods that reinforce each other.
+
+.quo                     {b/Donald Knuth.}  Literate Programming, 1984
+.quo                     in Literate Programming, CSLI, 1992
+
+Programming languages have been created to interact with computers using
+compilers or interpreters, so humans cannot use them to speak, exchange
+knowledge, express complex ideas, processes or algorithms, etc. A program is
+an implementation of an algorithm using a programming language. An algorithm
+is a more or less complex way to solve a given problem.
+
+Literate programming systems let users write programs while they are
+describing the algotirhm used to solve the problem. The order used to
+describe an algorithm has very little to do with the program that implements
+it. Thus, it is necessary to extract and re-arrange the parts of the program
+distributed all along the document to create the program. After that, the
+program is ready to be read by a compiler or an interpreter.
+
+So there are two different things here: first, the document used to describe
+the algorithm, wich includes the final program written into smaller,
+dispersed parts; and second, the program generated re-arranging the parts of
+the program coming from the original document.
+
+In {t/QWEB}, the main document is a {t/QWE} document. The program can be written in
+any programming language supported by {t/QWE}. {t/QWEB} documents can even be text
+documents using {t/QWE}, as this one you're reading.
+
+Blocks of code inserted into the document are called {e/qweb-blocks}.
+
+
+.chp 3. Basic Usage
+{t/QWEB}, as a literate programming system, is based on ideas, concepts and
+approaches used by other programming languages and literate programming
+systems. You won't find nothing new as a language, except:
+
+.li1 The way these elements are used
+
+.li1 The fact that {t/QWEB} is integrated into {t/QWE}, making then use of the
+.li1 commonalities offered to extend it
+
+.li1 qweb-block contents is not limited to source code: it can contain {t/QWE}
+.li1 formatted documents which, in turn, will produce another {t/QWE} document
+.li1 for the compiler
+
+
+.sec 3.1. qweb-block definitions
+Lets start with an example. Suppose this is the first {e/qweb-block definition},
+using {t/C++}, for the construction of the {t/'Hello World'} program:
+
+        .qweb < Say Hello World >=
+
+        std::cout << "Hello World";  // Algorithm's core
+
+By default, every qweb-block ends as soon as the next qweb-block begins, so
+this text pertains to it (it would really appear into the generated souce
+code). If you don't like this, you can put a {t/<----->} line (no matter how
+long) to signal the end of the qweb-block:
+
+        .qweb < Say Hello World >=
+
+        std::cout << "Hello World";  // Algorithm's core
+        .qweb <---------->
+
+This way the end of the block is seen clearly. Every qweb-block definition has
+two different parts: the name of the qweb-block (the text between {t/'<'} and {t/'>='}
+symbols) and the piece of program it defines. White spaces and tabs at the
+beginning and at the end of the name are allowed. The name of this qweb-block is
+then {t/"Say Hello World"}.
+
+Moreover, qweb-blocks are also links. Press near the beginning and you'll be
+redirected to the previous qweb-block occurrence, if it exists. Press near the
+end and the search will take place forwards. Closing qweb-block marks will
+redirect you to the beginning and to the next qweb-block, respectively.
+
+The name is always taken by removing {t/'<[ \t]*'} and {t/'[ \t]*>='} from the
+beginning and the end, respectively, of the qweb-block definition. This way
+there is no confusion when the name itself contains {t/'<'} or {t/'>'}. For instance,
+there is nothing wrong in this qweb-block:
+
+        .qweb < Integer::operator< >=
+        inline bool Integer::operator<( Integer &i ) const throw
+        {
+                return( int( *this ) < int( i ));
+        }
+        .qweb <--->
+
+
+.sec 3.2. qweb-block aggregations
+qweb-block definitions are not closed. Can be extended by appending additional
+contents:
+
+        .qweb < Say Hello World >+=
+        std::cout  << std::endl;
+
+        .qweb <---------->
+
+Please note the sign {t/'+='} at the end of the name: this means that the
+contents of this definition is {e/appended} to the existing contents. We call
+this form a {e/qweb-block aggregation}. Previous qweb-block aggregations to a qweb-block
+definition are simply ignored. That is, qweb-block aggregations to a non
+existent qweb-block definition has no effect. So actually, the qweb-block named
+{t/'Say Hello World'} contains the following lines:
+
+            .ver
+            .ver std::cout << "Hello World";  // Algorithm's core
+            .ver std::cout << std::endl;
+            .ver
+
+including these two empty lines. Please note that generated code is written
+in this document inside a {e/verbatim} environment.
+
+
+.sec 3.3. qweb-block references
+In order to construct a program using literal programming techniques, you
+must define all your basic qweb-blocks. Sure these qweb-blocks shall refer to other
+qweb-blocks to make use of the code, concepts and comments contained in. The
+usage of one qweb-block into anther one is called a {e/qweb-block} {e/reference}.
+
+A program is then composed by a main qweb-block definition where the rest of the
+qweb-blocks are referenced. By default, the name of the main qweb-block is
+{t/'*'}. Let's make a complete Hello World program:
+
+        .qweb <*>=
+        .qweb    <Declarations>
+        .qweb    <Main function>
+        .qweb    <------------->
+
+being these referenced qweb-blocks (keep in mind that this is just an
+example):
+
+        .qweb < Declarations >=
+         #include <iostream>
+        .qweb <---------->
+
+and
+
+        .qweb < Main function >=
+        int main( void )
+        {
+                .qweb <Say Hello World>
+                return( 0 );
+        }
+        .qweb <---------->
+
+The generation of the source code starts by replacing {t/'*'} qweb-block with its
+contents, and recursively substituting every qweb-block reference by its
+contents. So it would look like this:
+
+        .ver #include <iostream>
+        .ver int main( void )
+        .ver {
+        .ver
+        .ver    std::cout << "Hello World";  // Algorithm's core
+        .ver    std::cout << std::endl;
+        .ver
+        .ver    return( 0 );
+        .ver }
+
+
+.chp 4. Configuration items
+{t/QWE} offers a common mechanism to write configurable items. {t/QWEB} makes use of
+this feature to configure several parameters. The very first and more
+important one is {t/'enable'}, with which you can instruct {t/QWE} to automatically
+initialize {t/QWEB} in the current document. The syntax is as follows:
+
+        .cfg.qweb.enable  yes
+
+Most features can be configured with the same principle. Next sections
+describe all these config items and its features.
+
+
+.sec 4.1. Main program name
+One of the most importants config items is the name of the main entry point
+of the program. If you like to give a more expressive name to your program,
+you can use {t/'program.name'} config item:
+
+        .cfg.qweb.program.name  HELLO WORLD EXAMPLE
+
+Then, define your program as usual:
+
+        .qweb < HELLO WORLD EXAMPLE >=
+        .qweb    <Declarations>
+        .qweb    <Main function>
+        .qweb    <------------->
+
+At {e/qweb-compile} time the program will be generated starting by this qweb-block.
+
+
+.sec 4.2. Output file
+This is the set of config items related with the output file, that is, the
+file that will contain the source code of your program:
+
+        .cfg.qweb.out.filename  qweb.cpp
+        .cfg.qweb.out.overwrite yes
+
+The first one defines the output filename. The value of {t/'out.overwrite'}
+({t/'yes'} or {t/'no'}) decides whether the file will be directly overwritten or the
+user will have to confirm this point.
+
+
+.sec 4.3. Importing files
+.warning Feature not yet available
+{t/QWEB} has the capability to {e/import} other {t/QWEB} documents containing common
+qweb-blocks. This is very useful to reuse a qweb-block in more than one
+document or in mutiple scenarios. The config item you must use is:
+
+        .cfg.qweb.import filename.qweb
+
+It is important to remember that all imported files are pre-processed {i/before}
+processing the document containing the main entry point of the program.
+
+Note that the {t/import} item refers to the filename, not to a {e/module} name nor
+anything like that (as in {t/Java}). But it is not an {e/include} directive, as in {t/C},
+because no matter where you put the import config item in the document: it
+will be always processed before the current document.
+
+Recursive or circular imports are supported, although users should take care
+of this situation. Every file is processed ony once.
+
+What makes interesting and powerful of importing document is the ability to
+{e/pre}-define qweb-blocks that can be extended by adding new contents to
+them. For instance, let suppose we'd like to have a license header for all
+document of a project:
+
+        .box file license.qweb starts here
+
+        .qweb < License >=
+        /*
+         * This file is part of my example.
+         *
+         * This example is free software: you can redistribute it and/or modify
+                .tip ... complete GPL announce ...
+        */
+        .qweb <-------------------->
+
+        .box license.qweb ends here
+
+Every document should import this file and make use of the {t/'License'} qweb-block:
+
+        .box file main.qweb.cpp starts here
+
+        .cfg.qweb.import license.qweb
+        .cfg.qweb.program.name IMPORT EXAMPLE
+
+        .qweb <License>+=
+
+        /** Please find additional information in the README file **/
+        .qweb <---------->
+
+        .qweb < IMPORT EXAMPLE >=
+        .qweb   <License>
+        .qweb   <Declarations>
+        .qweb   <Main function>
+                        .tip ...other qweb-blocks ...
+        .qweb <---------->
+
+        .box main.qweb.cpp ends here
+
+
+.chp 5. Advanced Features
+Here we present few {t/QWEB} advanced features.
+
+.sec 5.1. Rewriting rules
+When qweb-block references must become a chunk of a program's source code, it
+is time to replace {e/variables} with their values. As {t/QWEB} is not a programming
+language, there is no such formal concept of variable, but we call them this
+way to facilitate its comprehension. There are no variable declarations
+neither explicit assigments. The two only ways to assign a value to a
+variable is using constants or parameter passing.
+
+.sse 5.1.1. Variables
+Variables are declared using config items, like this one:
+
+        .cfg.qweb.PROJECT_NAME My example
+
+This declaration assigns the value {t/'My example'} (leading and trailing blanks
+removed) to the variable {t/'PROJECT_NAME'}. Variables can be declared twice or
+more, no matter how many times, but just the last declaration is used. The
+only restriction is that variables {e/cannot be declared} inside a qweb-block.
+
+Now we need a mechanism to refer to this variable inside qweb-blocks. The
+syntax used should be quite familiar to shell script programmers and Makefile
+writers: {t/'$(PROJECT_NAME)'} is the answer.
+
+Take a look at the new version of the {t/license.qweb} file:
+
+        .box file license.qweb starts here
+
+        .qweb < License >=
+        /*
+         * This file is part of $(PROJECT_NAME).
+         *
+         * $(PROJECT_NAME) is free software: you can redistribute it and/or modify
+               {e/... complete GPL notice ...}
+         */
+        .qweb <---------->
+
+        .box license.qweb ends here
+
+The qweb-block defined this way permits the substitution of the reference
+{t/'$(PROJECT_NAME)'} by its current value. In this case, the previous constant
+declaration assigned {t/'My example'}.  Thus, the qweb-block reference {t/'License'}
+will be rewritten as follows:
+
+        .ver /*
+        .ver  * This file is part of My example.
+        .ver  *
+        .ver  * My example is free software: you can redistribute it and/or modify
+        .ver      ... complete GPL notice ...
+        .ver  */
+
+There is no limit nor restriction in the number of variables you can use
+inside a qweb-block. If a variable has no value at the time a qweb-block is
+rewritten, it is not substitued. As in {t/C} and {t/C++}, constant identifiers must
+start with a letter or an underscore, and can contain any number of letters,
+numbers and underscores. Identifiers are case-sensitive.
+
+.sss 5.1.1.1. Order of substitution
+Constants are substituted just after the qweb-block has been written and in
+the same order they are declared. This is an important point because you can
+play with values of constants as constant names. That is:
+
+        .cfg.qweb.A                LETTER_A
+        .cfg.qweb.B                LETTER_B
+        .cfg.qweb.LETTER_B  This should be defined after LETTER_A
+        .cfg.qweb.LETTER_A  Another substitution, but not $(LETTER_B)
+
+        .qweb < qweb Block >+=
+        .ver
+        .ver $$(A)    --> $(A)
+        .ver $$($$(A)  --> $($(A))
+        .ver $$(B)    --> $(B)
+        .ver
+        .qweb <-->
+
+would be replaced by
+
+        .ver $(A)    --> LETTER_A
+        .ver $($(A)  --> Another substitution, but not $(LETTER_B)
+        .ver $(B)    --> LETTER_B
+
+The order in which constants are replaced is {t/'A'}, {t/'B'}, {t/'LETTER_B'} and
+{t/'LETTER_A'}.  The first {t/'$(A)'} is replaced by {t/'LETTER_A'}, whilst the second
+{t/'$($(A))'} is replaced by {t/'$(LETTER_A)'} which, in turn, is replaced by the
+text when constant {t/'LETTER_A'} is replaced. As {t/'LETTER_B'} is replaced before
+the text appears it remains not substituted.
+
+After all constants have been replaced, all occurrences of {t/'$$'} are replaced
+by {t/'$'}. That's why {t/'$$(A)'} is not substituted by {t/'$LETTER_A'}, but {t/'$(A)'}.
+
+.sss 5.1.1.2. External Variables
+Variables declared in external documents are imported through {t/import} config
+items. This can be useful to declare a default value near the imported
+qweb-block containing the variable. Later, its value can be overwritten by
+declaring it again after the {t/import} config item. If it is not redeclared, at
+least it will have a default value. Under certain circumstances, this could
+be much better rather than having a undefined value.
+
+.sse 5.1.2. Parameter passing
+.warning Feature not yet available
+Constants have the obvious limitation that every reference is substituted
+with the same value. Or users must have to declare it again before qweb-block
+rewriting occurs. There is a much better mechanism to get the same effect:
+parameter passing.
+
+First, parameters must be declared in qweb-blocks definitions. Let's review
+the {t/'License'} qweb-block again:
+
+        .box file license.qweb starts here
+
+        .qweb < License( MODULE_NAME, YEAR_LIST, AUTHOR_NAME ) >=
+        /*
+         * This file is part of $(PROJECT_NAME).
+         *
+         * $(PROJECT_NAME) is free software: you can redistribute it and/or modify
+               {e/... complete GPL notice ...}
+         *
+         * $(MODULE_NAME) Copyright (C) $(YEAR_LIST)  $(AUTHOR_NAME)
+         */
+        .qweb <---------->
+
+        .box license.qweb ends here
+
+Note that the qweb-block definition has changed substantially. There are three
+{e/positional} {e/parameters} now. This let module authors to personalize GPL notice
+by declaring its own copyright. For instance:
+
+        .qweb < License( QWEB, 2009, Francesc Rocher ) >
+
+will be rewritten as:
+
+        .ver /*
+        .ver  * This file is part of My example.
+        .ver  *
+        .ver  * My example is free software: you can redistribute it and/or modify
+        .ver      ... complete GPL notice ...
+        .ver  *
+        .ver  * QWE Copyright 2009  Francesc Rocher
+        .ver  */
+
+With respect to qweb-block aggregations:
+
+.li1 Don't need to re-declared once again parameters declared by the main
+.li1 qweb-block definition
+
+.li1 Cannot declare additional parameters
+
+.li1 Variable substitution takes place normally, as expected
+
+That is, a qweb-block aggregation to the {t/'License'} qweb-block would look like
+this:
+
+        .qweb < License >+=
+        /*
+         * For more information about $(PROJECT_NAME), please visit
+         *
+         *    [[http://$(QWEB_SITE)/]]
+         */
+        .qweb <---------->
+
+Now, {t/'$(PROJECT_NAME)'} would take its value from the prameter and
+{t/'$(QWEB_SITE)'} could be defined as a constant.
+
+Parameters and constants can have the same name. When a name collision occurs
+during a constant and parameter substitution inside a qweb-block, the
+parameter is taken {e/if it is not null}; otherwise, the constant value is
+used. If neither of both has a value, the variable is not subsituted.
+
+
+.#appendix
+.chp A. QWEB {e/compilation}
+In order to get the source code of the program written in a {t/QWEB} document it
+is necessary to {e/qweb-compile} it. This is a high level description of this
+process using {t/QWEB}.
+
+The process itself is quite simple:
+
+.qweb < QWEB COMPILE >=
+.qweb    < Initialize data >
+.qweb    < Scan current file to get all options and constants >
+.qweb    < Scan current file to get imported files, and process them >
+.qweb    < Create the generated file >
+.qweb    < Insert the contents of the main qweb-block >
+.qweb    < Recursively substitue all qweb-blocks references >
+.qweb <--->
+
+That's all. Now, let's detail a little more every step.
+
+
+.qweb < Initialize data >=
+
+.li1 {k/LET}
+.Li2 {v/curr-file} be the current filename in process
+.Li2 {v/curr-buffer} be the current buffer visiting the current file
+
+.quo                     Under {t/Emacs}, "A 'buffer' is a Lisp object containing
+.quo                     text to be edited.  Buffers are used to hold the
+.quo                     contents of files that are being visited; there may
+.quo                     also be buffers that are not visiting files."
+
+.Li2 {v/qweb-import-file-list} be a global list initialized with {k/nil}. Every
+.li2 imported and processed file will be added to this list. Before importing
+.li2 and processing a file, this list will be checked to avoid infite
+.li2 recursion (a file that imports itself has no efect)
+.Li2 {v/qweb-block-alist} an associative list that associates every qweb-block name
+.li2 with a list of positions. Every position has a filename and two integers
+.li2 representing the beginning and the end of the region pertaining to every
+.li2 qweb-block chunck.
+
+
+.qweb < Scan current file to get all options and constants >=
+
+.Li1 {k/LET}
+.Li2 {v/qweb-cfg-alist} be the list of all config items matching {s/"qweb"}
+.Li2 {v/qweb-const-alist} be the list of constants matching {s/"qweb.[A-Z_-]+"}
+.Li2 {v/curr-qweb-block-name} be the name of the current qweb-block in process,
+.li2 initilized to
+.Li3 the value of {v/MAIN}, if it has been defined in {v/qweb-const-alist}
+.Li3 the string {s/"main"} otherwise
+.Li2 {v/curr-qweb-block} be the current qweb-block definition, initilized to {k/nil}
+.Li2 {v/source-filename} be
+.Li3 the value of {v/FILENAME}, if it has been defined in {v/qweb-const-alist}
+.Li3 {k/nil} otherwise
+
+
+.qweb < Scan current file to get imported files, and process them >=
+
+.Li1 Append {v/curr-file} to {v/qweb-import-file-list}
+.Li1 {k/FOR} every imported file {v/ifile} in {v/curr-buffer} {k/DO}
+.Li2 {k/IF} {v/ifile} is not an element of {v/qweb-import-file-list} {k/THEN}
+.Li3 Make sure {v/ifile} exists and is user readable
+.Li3 Temporarily change {v/curr-file} to {v/ifile}
+.Li3 Temporarily change {v/curr-buffer} by visiting {v/curr-file}
+
+.cmt            # {i/Look!! This is a recursive qweb-block}!!
+.cmt            #
+.qweb            < Scan current file to get imported files, and process them >
+.cmt            #
+.cmt            # Of course this qweb-block substitution will fail. See few
+.cmt            # lines above: the {k/IF} sentence will end at the {k/ELSE} part
+.cmt            # 'Log the recursion error'.
+.cmt            # Remember we are describing {e/an algorithm}, not a {e/program}...
+.cmt            #
+.qweb            < Process all qweb-block definitions >
+
+.Li3 Restore {v/curr-file} and {v/curr-buffer}
+.Li2 {k/ELSE}
+.Li3 Log the recursion error
+.Li2 {k/FI}
+.Li1 {k/DONE}
+
+
+.qweb < Process all qweb-block definitions >=
+
+.Li1 {k/FOR} every qweb-block {v/wblock} defined in {v/curr-buffer}, including qweb-block
+.li1 definitions and additions, {k/DO}
+.Li2 {k/LET} {v/start} and {v/end} be the positions in {v/curr-buffer} where {v/wblock} begins
+.li2 and end, respectively
+.Li2 {k/IF} {v/wblock} does not exists in {v/qweb-block-alist}, {k/THEN}
+.Li3 Append an new element to {v/qweb-block-alist} using {v/wblock}'s name
+.Li2 {k/FI}
+.Li2 {k/LET} {v/qweb-block-pos-list} be the list of positions of {v/wblock}, taken from
+.li2 {v/qweb-block-alist}
+.Li2 Append the {v/curr-file}, {v/start} and {v/end} to {v/qweb-block-pos-list}
+.li1 {k/DONE}
+
+
+.qweb < Insert the contents of the main qweb-block >=
+
+.Li1 {k/LET} {v/qweb-block-name} be the name of the currently processed qweb-block
+.li1 defined as
+.Li2 {k/IF} {v/MAIN} has been defined as a constant, i.e. it has an entry in
+.li2 {v/qweb-const-alist}, {k/THEN}
+.Li3 the value of the constant {v/MAIN}
+.Li2 {k/ELSE}
+.Li3 the string {s/"main"}
+.Li2 {k/FI}
+.qweb    < Insert current qweb-block contents >
+
+
+.qweb < Insert current qweb-block contents >=
+
+.quo                     At this point, the newly generated buffer is the
+.quo                     current one and the point is at the beginning of
+.quo                     line where the current qweb-block has been found.
+
+.Li1 {k/EDIT} the new buffer and change the qweb-block reference with a beginning notice
+
+.li1 {k/LET}
+.Li2 {v/qweb-block-pos-list} be the list of positions of {v/qweb-block}, taken from
+.li2 {v/qweb-block-alist}
+.Li2 {v/begin} be the position in the current buffer
+
+.Li1 {k/IF} {v/qweb-block-pos-list} is empty {k/THEN}
+.Li2 Insert a note indicating that {t/qweb-block-name} has not been defined
+.Li1 {k/ELSE}
+.Li2 {k/FOR} every position element {v/elt} in {v/qweb-block-pos-list} {k/DO}
+.Li3 {k/LET} {v/elt} be the current element
+.Li3 {k/IF} {v/elt.filename} exists and is user-readable {k/THEN}
+.Li4 {k/LET} {v/qweb-buffer} be the buffer created by reading {v/elt.filename}
+.Li4 {k/WITH} buffer {v/qweb-buffer} {k/DO}
+.Li5 Go to position {v/elt.begin}
+.Li5 Select text up to position {v/elt.end}
+.Li5 Insert selected text into the current buffer
+.Li4 {k/DONE}
+.Li3 {k/FI}
+.Li2 {k/DONE}
+.Li1 {k/FI}
+
+.Li1 {k/EDIT} the new buffer and insert an end notice
+
+.Li1 {k/LET} {v/end} be the position in the current buffer .bug USE new-buffer
+
+.qweb    < Substitute variable references in current qweb-block >
+
+
+.warning DRAFT QWEB-BLOCKS
+.warning FOLLOWING PSEUDO-CODE IS NO GOOD AT ALL
+
+
+.qweb < Insert qweb-block contents( $(NAME) )>=
+
+.li1 {b/Let} {t/qweb-block-pos-list} be the list of positions of {t/qweb-block}, taken from
+.li1 {t/qweb-block-alist}
+
+.Li1 {b/If} {t/qweb-block-pos-list} is empty {b/then}
+.Li2 Insert a note indicating that {t/$(NAME)} has not been defined
+.Li2 Exit
+
+.Li1 {b/Let} {t/begin} be the current position of the current buffer
+
+.Li1 {b/For} every position defined in {t/qweb-block-pos-list} {b/do}
+.Li2 Let {t/elt} be the current element
+.Li2 With buffer {t/elt.buffer}
+.Li3 Go to buffer position {t/elt.begin}
+.Li3 Select text up to position {t/elt.end}
+.Li2 Insert selected text into current buffer
+
+.Li1 {b/Let} {t/end} be the current position of the current buffer
+
+.Li1 {b/For} every element in the list {t/constants-list} {b/do}
+.Li2 Let {t/elt} be the current element
+.Li2 {b/For} every occurrence of the string {t/$( elt )} between positions {t/begin}
+.li2 and {t/end} {b/do}
+.Li3 Replace matching string with the value of the constant
+
+.qweb <----->
+
+
+
+.qweb < Insert the contents of the main qweb-block >=
+
+.li1 Get the name of the main qweb-block from the list of options. If there is
+.li1 no option, its default value is {t/'main'}.
+
+.li1 Check that the main qweb-block definition exists. If it doesn't exists,
+.li1 then signal an error to the user.
+
+.li1 Copy the contents of the main qweb-block into the buffer.
+
+.qweb  < Copy the contents of qweb-block into the buffer( $(MAIN) )>
+
+.qweb    < Substitute variable references in current qweb-block >
+
+.qweb    <----->
+
+.qweb < QWEB-COMPILE >=
+
+.qweb   <Make a list with all config items defined in current file>
+.quo
+.quo                 All options, parameters and constants are defined in
+.quo                {t/QWEB} using config items. Options include thinks like
+.quo                whether to include qweb-block names or not, whether to
+.quo                overwrite the generated file if it already exists or not,
+.quo                etc. Parameters include things like the generated
+.quo                filename, the name of the main qweb-block, etc. Constants
+.quo                are user defined and can be used to define generic
+.quo                qweb-blocks. All these entities are stored in a list,
+.quo                with their respective values, and references to them in
+.quo                qweb-blocks are substituted with those values.
+
+.quo                We need two global lists during the process. The first one,
+.quo                {t/import-file-list}, is the list of processed files, used to
+.quo                avoid processing an imported file more than once. The
+.quo                second, {t/qweb-block-list}, is the list of qweb-blocks
+.quo                definitions, used to store all qweb-blocks.
+
+.qweb    <Clean import-file-list>
+.qweb   <Clean qweb-block-glist>
+.qweb   <Search and scan imported files in current file>
+.qweb   <Process qweb-blocks defined in imported files, in the same order>
+.qweb   <Process qweb-blocks defined in the current document>
+.qweb   <Create a new output file and prepare it to write>
+.qweb   <Rewrite qweb-block( $(MAIN) )>
+
+.qweb <Search and scan imported files in current file>=
+.qweb   <If current file has not been already visited>
+.qweb     <Append current file to import-file-list>
+.qweb     <For each import directive in current file>
+.qweb       <Set imported file as the current file>
+         .warning Resursive qweb-block calls are not allowed !!
+.qweb       <Search and scan imported files in current file>
+.qweb       <For each qweb-block definition>
+.qweb         <Append qweb-block definition to the list>
+.qweb   <else>
+.qweb     <Warning: "current file alredy visited">
+
+.qweb < Rewrite qweb-block( NAME ) >=
+.qweb     <Get qweb-block definition of( $(NAME) )>
+.qweb     <Copy qweb-block chunks>
+.qweb     <Substitute parameters in copied chunks>
+.qweb     <Substitute constants in copied chunks>
+.qweb     <Mark used qweb-block( $(NAME) )>
+.qweb     <Make a list of remaining qweb-blocks in copied chunks>
+.qweb     <For every qweb-block in the list>
+.qweb     <Rewrite qweb-block( $(NAME) )>
+.qweb     <---------->
+
+.cmt _____________________________________________________________________________
+.cmt
+.cfg.footer
+.cfg.mode Local Variables:
+.cfg.mode qwe-delimiter-tag: ""
+.cfg.mode mode: qwe
+.cfg.mode End:
+ .bbx qweb-manual.txt ends here

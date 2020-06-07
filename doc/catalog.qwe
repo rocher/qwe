@@ -1,0 +1,845 @@
+.cfg.header
+.cfg.prj.name           QWE
+.cfg.prj.brief          QWE's not WEB for Emacs
+.cfg.prj.version        0.9.5-pre06
+.cfg.prj.author.name    Francesc Rocher
+.cfg.prj.homepage       [[http://github.com/rocher/qwe]]
+.cfg.prj.keywords       {e/QWE, literate programming, literate software engineering,}
+.cfg.prj.keywords       {e/software documentation, documentation generation,}
+.cfg.prj.keywords       {e/lightweight markup language}
+.cfg.prj.file           {t/qwe-catalog.qwe}
+.cfg.prj.file.desc      QWE Elements Catalog: practical examples and test
+.cfg.prj.copyright      Copyright (C) 2004-2020  Francesc Rocher
+.cfg.prj.license        GPL v3
+.cfg.prj.license++
+.ver This file is part of QWE.
+.ver
+.ver QWE is free software: you can redistribute it and/or modify
+.ver it under the terms of the GNU General Public License as published by
+.ver the Free Software Foundation, either version 3 of the License, or
+.ver (at your option) any later version.
+.ver
+.ver QWE is distributed in the hope that it will be useful,
+.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.ver GNU General Public License for more details.
+.ver
+.ver You should have received a copy of the GNU General Public License
+.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+.cfg.prj.license--
+.cfg.doc.style             book
+.cfg.doc.show.delimiters   invisible
+.cfg.doc.show.format-text  no
+.cfg.doc.show.element-ids  no
+.cfg.doc.show.links        no
+.cfg.doc.image.autoload    yes
+.cfg.doc.image.display     yes
+.cfg.doc.image.border      2
+.cfg.toc.menu.enabled      yes
+.cfg.header.filename       ../header.qwe
+.cfg.header.end            [[qwe:hdr-update][update]]
+.cmt _____________________________________________________________________________
+.cmt
+.ttl QWE Elements Catalog
+.cmt
+.stl     A Practical Example and
+.stl     Test of All QWE Elements
+.cmt
+.todo QUOTATION HERE
+.cmt
+.toc.begin Table of Contents
+
+.toc.chp       1. Environments
+
+.toc.sec             1.1. Abstract
+
+.toc.sec             1.2. Quotation
+
+.toc.sec             1.3. Verbatim
+
+.toc.sec             1.4. Comment
+
+.toc.sec             1.5. Deleted
+
+.toc.sec             1.6. TTY
+
+.toc.chp       2. Document Sectioning
+
+.toc.sec             2.1. Section
+.toc.sse                   2.1.1. Subsection
+.toc.sss                         2.1.1.1. Subsubsection
+
+.toc.sec             2.2. Section
+.toc.sse                   2.2.1. Subsection
+
+.toc.chp       3. Lists
+
+.toc.sec             3.1. Unnumbered lists
+.toc.sse                   3.1.1. Simple
+.toc.sse                   3.1.2. Composed
+
+.toc.sec             3.2. Numbered lists
+.toc.sse                   3.2.1. Simple
+.toc.sse                   3.2.2. Composed
+
+.toc.chp       4. Annotations
+
+.toc.sec             4.1. Notes
+
+.toc.sec             4.2. Anchors
+
+.toc.sec             4.3. TODOs
+
+.toc.sec             4.4. Work in Progress
+
+.toc.sec             4.5. Fixme
+
+.toc.sec             4.6. Warnings
+
+.toc.sec             4.7. Errors
+
+.toc.sec             4.8. Bugs
+
+.toc.chp       5. Decorations
+
+.toc.sec             5.1. Tip
+
+.toc.sec             5.2. Box
+
+.toc.sec             5.3. Bold Box
+
+.toc.sec             5.4. Button Released
+
+.toc.sec             5.5. Button Pressed
+
+.toc.chp       6. Format Text
+
+.toc.sec             6.1. Text
+.toc.sse                   6.1.1. Classical formats
+.toc.sse                   6.1.2. Highlight
+.toc.sse                   6.1.3. Programming entities
+
+.toc.sec             6.2. Tables
+
+.toc.chp       7. Links
+
+.toc.sec             7.1. Links to the same file or buffer
+.toc.sse                   7.1.1. Links to anchors
+.toc.sse                   7.1.2. Links to section elements
+.toc.sss                         7.1.2.1. chapter
+.toc.sss                         7.1.2.2. appendix
+.toc.sss                         7.1.2.3. section
+.toc.sss                         7.1.2.4. subsection
+.toc.sss                         7.1.2.5. subsubsection
+.toc.sse                   7.1.3. Evaluated links
+.toc.sss                         7.1.3.1. QWE
+.toc.sss                         7.1.3.2. shell
+.toc.sss                         7.1.3.3. compile
+.toc.sss                         7.1.3.4. elisp
+.toc.sse                   7.1.4. External information sources
+.toc.sss                         7.1.4.1. manual pages
+.toc.sss                         7.1.4.2. info pages
+.toc.sss                         7.1.4.3. symbol information
+
+.toc.sec             7.2. Links to external files
+.toc.sse                   7.2.1. Links to files
+.toc.sse                   7.2.2. Links to anchors
+.toc.sse                   7.2.3. Links to section elements
+.toc.sss                         7.2.3.1. chapter
+.toc.sss                         7.2.3.2. appendix
+.toc.sss                         7.2.3.3. section
+.toc.sss                         7.2.3.4. subsection
+.toc.sss                         7.2.3.5. subsubsection
+.toc.sse                   7.2.4. Evaluated links
+.toc.sss                         7.2.4.1. QWE
+
+.toc.sec             7.3. Links externally managed
+.toc.sse                   7.3.1. http
+.toc.sse                   7.3.2. ftp
+.toc.sse                   7.3.3. Other URL's
+
+.toc.sec             7.4. Images
+
+.toc.chp       A. Additional Features
+
+.toc.sec             A.1. Programming Language Elements
+
+.toc.sec             A.2. Identifiers
+
+.toc.chp       B. End Notes
+
+.toc.sec             B.1. About this File
+
+.toc.chp       C. Test Zone
+.toc.end {Z/ update ToC }
+.cmt
+.cmt
+.chp 1. Environments
+.cmt
+.sec 1.1. Abstract
+.abs From the wikipedia: An abstract is a brief summary of a research
+.abs article, thesis, review, conference proceeding or any in-depth analysis
+.abs of a particular subject or discipline, and is often used to help the
+.abs reader quickly ascertain the paper's purpose.
+
+  [[elisp:(customize-face 'qwe-face-abstract)][customize abstract face]]
+
+.sec 1.2. Quotation
+.cmt
+.quo                                         A quotation is the repetition of one
+.quo                               expression as part of another one,
+.quo                               particularly when the quoted expression is
+.quo                               well-known or explicitly attributed (as by
+.quo                               citation) to its original source.
+.cmt
+.quo                               {i/          Wikipedia, quotation}
+.quo                                           [[http://en.wikipedia.org/wiki/Algorithm][Quotation]]
+
+Note: quotation environment uses {e/italic} face.
+
+.sec 1.3. Verbatim
+.ver A word-for-word report of a speech; Corresponding with the original word
+.ver for word; Able to take down a speech word for word, especially in
+.ver shorthand; Word for word; in exactly the same words as were used
+.ver originally
+.ver
+.ver In verbatim environment QWE codes have no effect. For instance, you
+.ver should see {b/these words in bold face}, but you only get the code.
+.ver Sections, annotations and decorations are also affected: .sec .tip .box
+.ver .fixme etc.
+
+Note: verbatim environment uses {t/fixed} face.
+
+.sec 1.4. Comment
+.cmt Comment environments have no effect in output or translations to other
+.cmt formats. They act just as comments in a programming language.
+
+  [[elisp:(customize-face 'qwe-face-comment)][customize comment face]]     (by default inherits {t/font-lock-comment-face})
+
+.sec 1.5. Deleted
+.del This is a deleted text evironment. Use it to mark deleted portions of
+.del text or code. As comments, they don't have any effect.
+
+  [[elisp:(customize-face 'qwe-face-delete)][customize deleted face]]     (by default inherits {t/font-lock-comment-face})
+
+.sec 1.6. TTY
+
+.tty  {b/$ uname -a} {I/ }
+.tty  2.6.30.5-43.fc11.x86_64
+
+  [[elisp:(customize-face 'qwe-face-tty)][customize face tty]]
+
+.chp 2. Document Sectioning
+Every section can use either the short or the long form. Short forms are a
+three letter code representing the section name. There are chapters,
+sections, subsections and subsubsections. Appendixes are at the same level as
+chapters, but they are numbered using uppercase letters. For a chapter to
+become an appendix it is necessary to insert the {e/directive} {t/'#appendix'}. See
+[[a:appendix][below]] for a real use.
+
+Section numbering is actually done by {t/QWE}. How? Quite easy: if the first
+sectioning element of the document is numbered, then the rest also will be,
+and the numbering will start with the number written there. To try it, follow
+these steps:
+
+.li1 Goto chapter [[chp:][Environments]] and remove {t/'1.'} (including the dot)
+
+.li1 [[qwe:section-renumber][Renumber the document]], using this link or the menu entry, and see what
+.li1 happened.
+
+.li1 Return to chapter [[chp:][Environments]] and write {t/'72'} (or any other numer) and
+.li1 repeat [[qwe:section-renumber][the numbering]].
+
+.sec 2.1. Section
+
+.sse 2.1.1. Subsection
+
+.sss 2.1.1.1. Subsubsection
+
+.par paragraph
+
+
+.section 2.2. Section
+
+.subsection 2.2.1. Subsection
+
+.subsubsection 2.2.1.1. Subsubsection
+.bug This subsubsection doen's appears into the ToC
+
+.paragraph paragraph
+
+
+.chp 3. Lists
+There are two kinds of lists: numbered and unnumbered. In turn, every type of
+list can be simple or composed. Simple items are only few words long, no more
+than one line in length. Composed items are like a paragraph.
+
+.sec 3.1. Unnumbered lists
+
+.todo Add a link to customize variable appearance of bullets and spaces (see qwe-lang.el?)
+
+.sse 3.1.1. Simple
+
+.Li1 Every item has a bullet
+.Li1 Every item occupies no more than a line
+.Li1 There is no possibility to continue below
+.Li1 Used for {e/intensive} items lists (a bullet per line)
+
+.sse 3.1.2. Composed
+
+.li1 Every item is composed by more than one line, like paragraphs, so you
+.li1 must leave a blank line between two consecutive items.
+
+.li1 The second item starts in a new line, with a new bullet, and can
+.li1 naturally extend to two or more lines.
+
+.li1 This kind of list is used to make a more readable, paragraph-like items,
+.li1 with bigger contents than simple items.
+
+.li1 It is possible to merge both kind of items, whenever it is necessary:
+.Li2 To make lists inside lists
+.Li2 To make shorter lists between longer items
+.Li3 Without limit in depth
+.Li4 Up to four levels
+.Li5 Now five
+.Li6 And up to six!!
+
+.li1 Please note that under {t/Emacs} it is realy easy to fill the paragraph of
+.li1 each item, by simply using {t/'M-q'}. Paragraph filling functions will
+.li1 naturally preserve and kindly manage the initial {t/'.li1'} in every line.
+
+.sec 3.2. Numbered lists
+
+.sse 3.2.1. Simple
+
+.Ni1 Every line has a number
+.Ni1 Automatic numbering to be implemented
+.Ni1 There is no continuation line
+.Ni2 As before, without limit in depth
+.Ni3 Using as many levels as possible
+.Ni4 Up to four levels
+
+.sse 3.2.2. Composed
+
+.ni1 Every item is like a paragraph. Thus, two consecutive items must be
+.ni1 separated with a blank line.
+
+.ni1 See above, unnumbered/composed lists for more information.
+
+
+.chp 4. Annotations
+An annotation is an addition made to the source code or other part of the
+document.
+
+.sec 4.1. Notes
+
+.not Note annotation in short form
+
+.note Note annotation in long form
+
+  [[elisp:(customize-face 'qwe-face-note)][customize note text face]]
+
+.sec 4.2. Anchors
+
+.anc one anchor
+
+.anchor another_anchor
+
+ [[elisp:(customize-face 'qwe-face-anchor))][customize anchor text face]]
+
+Please note that anchors can be directly referenced by a link of the form
+
+.ver    [[anchor-text]]   or   [[a:][anchor-text]]
+
+Anchors can be put in the middleof the text using
+
+.ver    {a/anchor-text}
+
+See chapter [[chp:][Format Text]].
+
+.sec 4.3. TODOs
+
+.tod Todo annotation in short form
+
+.todo Todo annotation in long form
+
+  [[elisp:(customize-face 'qwe-face-todo)][customize todo text face]]
+
+.sec 4.4. Work in Progress
+
+.wip Work in progress annotation in short form
+
+.work-in-progress 'Wip' annotation in long form
+
+  [[elisp:(customize-face 'qwe-face-work-in-progress)][customize wip text face]]
+
+.sec 4.5. Fixme
+
+.fix Fix annotation in short form
+
+.fixme Fixme annotation in long form
+
+  [[elisp:(customize-face 'qwe-face-fixme)][customize fixme text face]]
+
+.sec 4.6. Warnings
+
+.war Warning annotation in short form
+
+.warning Warning annotation in long form
+
+  [[elisp:(customize-face 'qwe-face-warning)][customize warning text face]]
+
+.sec 4.7. Errors
+
+.err Error annotation in short form
+
+.error Error annotation in long form
+
+  [[elisp:(customize-face 'qwe-face-error)][customize error text face]]
+
+.sec 4.8. Bugs
+
+.bug Bug Annotation
+
+  [[elisp:(customize-face 'qwe-face-bug)][customize bug text face]]
+
+
+.chp 5. Decorations
+
+.sec 5.1. Tip
+
+.tip Tip decoration
+
+  [[elisp:(customize-face 'qwe-face-tip)][customize tip text face]]
+
+.sec 5.2. Box
+
+.box Box decoration
+
+  [[elisp:(customize-face 'qwe-face-box)][customize box text face]]
+
+.sec 5.3. Bold Box
+
+.bbx Bold box in short form
+
+.bold-box Bold box in long form
+
+  [[elisp:(customize-face 'qwe-face-box)][customize bbx text face]]
+
+.sec 5.4. Button Released
+
+.bre Button released decoration in short form
+
+.button-released Button released decoration in long form
+
+  [[elisp:(customize-face 'qwe-face-button-released)][customize button released text face]]
+
+.sec 5.5. Button Pressed
+
+.bpr Button pressed decoration in short form
+
+.button-pressed Button pressed decoration in long form
+
+  [[elisp:(customize-face 'qwe-face-button-pressed)][customize button pressed text face]]
+
+
+.chp 6. Format Text
+While working with complex text, remember that format text visibility can be
+easily toggled.
+
+.sec 6.1. Text
+
+   [[qwe:toggle-show-format-text][show/hide format text]]
+
+.sse 6.1.1. Classical formats
+
+{a/anchor}
+
+{b/Bold}
+
+{i/Bold Italic}
+
+{e/Emphasized}
+
+{t/Fixed Font}
+
+{u/Underline}
+
+.sse 6.1.2. Highlight
+
+{y/ Highlight Yellow }
+
+{g/ Highlight Green }
+
+{o/ Highlight Orange }
+
+{c/ Highlight Cyan }
+
+.sse 6.1.3. Programming entities
+
+{s/"string"}
+
+{v/variable}
+
+{k/keyword}
+
+{f/function}
+
+{I/ inverse video }
+
+
+.sec 6.2. Tables
+There are several formats to make tables:
+
+   {T/ Letter | Name                     |  Example                        }
+   {R/   R    | row                      |  simply this row                }
+   {S/   S    | alternate row            |  simply this row                }
+   {R/   T    | title                    |  the first row of this table    }
+   {S/   U    | underlined row           |}{U/  underlined row                 }
+   {R/   V    | alernate underlined row  |}{V/  alternate underlined row       }
+   {S/   W    | underlined white row     |}{W/  underlined in white row        }
+   {R/   X    | boxed row                |}{X/  a row with a box               }
+   {S/   Y    | bold-boxed row           |}{Y/  a row in bold with a box       }
+   {R/   Z    | raised row               |}{Z/  raised row                     }
+   {S/   z    | sunken row               |}{z/  sunken row                     }
+
+   [[qwe:toggle-show-format-text][show/hide format text]]
+
+
+.chp 7. Links
+Links are created in a very similar way as format text. Every link can be
+expressed in three different formats. These three ways refer to the
+distinction between the link itself and the information shown to the
+user. {e/Simple} links offer the link information as it is written to the
+user. {e/Separate} links make a distinction between the type of the link and the
+rest; the type of the link is not shown. {e/Descriptive} links show a description
+to the users, completely hiding the link.
+
+.sec 7.1. Links to the same file or buffer
+
+.sse 7.1.1. Links to anchors
+The first think is to put an anchor, .anchor as this one
+
+An then make a link to point to it, [[a:as this one][for example]].
+
+.sse 7.1.2. Links to section elements
+
+   [[qwe:toggle-show-links][show/hide link constructors]]
+
+.sss 7.1.2.1. chapter
+
+{t/       simple }   [[chp:Environments]]
+{t/    separated }   [[chp:][Environments]]
+{t/  descriptive }   [[chp:Environments][See chapter above]]
+
+.sss 7.1.2.2. appendix
+
+{t/       simple }   [[app:End Notes]]
+{t/    separated }   [[app:][End Notes]]
+{t/  descriptive }   [[app:End Notes][See appendix below]]
+
+.sss 7.1.2.3. section
+
+{t/       simple }   [[sec:Simple Links]]
+{t/    separated }   [[sec:][Simple Links]]
+{t/  descriptive }   [[sec:Simple Links][See above]]
+
+.sss 7.1.2.4. subsection
+
+{t/       simple }   [[sse:Links to the same file or buffer]]
+{t/    separated }   [[sse:][Links to the same file or buffer]]
+{t/  descriptive }   [[sse:Links to the same file or buffer][See above]]
+
+.sss 7.1.2.5. subsubsection
+
+{t/       simple }   [[sss:chapter]]
+{t/    separated }   [[sss:][chapter]]
+{t/  descriptive }   [[sss:chapter][see above]]
+
+.sse 7.1.3. Evaluated links
+
+   [[qwe:toggle-show-links][show/hide link constructors]]
+
+.sss 7.1.3.1. QWE
+These links open access to an implementation-independent {t/API}. They are the
+most portable link of this section.
+
+{t/       simple }   [[qwe:toggle-show-links]]
+{t/    separated }   [[qwe:][toggle-show-links]]
+{t/  descriptive }   [[qwe:toggle-show-links][show/hide link details]]
+
+.sss 7.1.3.2. shell
+These links gives access to a shell: it is possible to execute any command,
+modifying or not the contents of the document. The presence of {e/a} {e/shell} is
+required, being clearly less portable. Only have been tested under Linux,
+with Bash. Must be used really creafully.
+
+{t/       simple }   [[shell:ls -l]]
+{t/    separated }   [[shell:][ls -l]]
+{t/  descriptive }   [[shell:ls -l][list of files]]
+
+.sss 7.1.3.3. compile
+Even less portable kind of links. Could be deprecated in the future.
+
+{t/       simple }   [[compile:make]]
+{t/    separated }   [[compile:][make]]
+{t/  descriptive }   [[compile:make][compile here]]
+
+.sss 7.1.3.4. elisp
+Links only usable under {t/Emacs}. Portable across different platforms if and
+only if {t/Elisp} expressions doesn't interact with the system.
+
+{t/       simple }   [[elisp:(emacs-version)]]
+{t/    separated }   [[elisp:][(emacs-version)]]
+{t/  descriptive }   [[elisp:(emacs-version)][see emacs version]]
+
+.sse 7.1.4. External information sources
+
+   [[qwe:toggle-show-links][show/hide link elements]]
+
+.sss 7.1.4.1. manual pages
+
+{t/       simple }   [[man:emacs]]
+{t/    separated }   [[man:][emacs]]
+{t/  descriptive }   [[man:emacs][Emacs manual page]]
+
+.sss 7.1.4.2. info pages
+Can be also considered as a link pointing to an external file.
+
+{t/       simple }   [[file:emacs,info:Major Modes]]
+{t/    separated }   [[file:emacs,info:][Major Modes]]
+{t/  descriptive }   [[file:emacs,info:Major Modes][See Major Modes info]]
+
+.sss 7.1.4.3. symbol information
+
+{t/       simple }   [[symbol:strcpy,c-mode]]
+{t/    separated }   [[symbol:][defun,lisp-mode]]
+{t/  descriptive }   [[symbol:defvar,lisp-mode][see 'defvar']]
+
+.sec 7.2. Links to external files
+These links are exactly the same as above including a parameter to indicate
+that the links is located into another file.
+
+   [[qwe:toggle-show-links][show/hide link constructors]]
+
+.sse 7.2.1. Links to files
+
+{t/       simple }   [[file:../qwe.el]]
+{t/    separated }   [[file:../qwe.el:][qwe.el]]
+{t/  descriptive }   [[file:../qwe.el][see file qwe.el]]
+
+.sse 7.2.2. Links to anchors
+
+{t/       simple }   [[file:../qwe.el,a:anchor]]
+{t/    separated }   [[file:../qwe.el,a:][anchor]]
+{t/  descriptive }   [[file:../qwe.el,a:anchor][see anchor]]
+
+.sse 7.2.3. Links to section elements
+
+   [[qwe:toggle-show-links][show/hide link constructors]]
+
+.sss 7.2.3.1. chapter
+
+{t/       simple}     [[file:../src/qwe-velt.el,chapter:QWE Elements]]
+{t/    separated }   [[file:../src/qwe-velt.el,chapter:][QWE Elements]]
+{t/  descriptive }   [[file:../src/qwe-velt.el,chapter:QWE Elements][See this chapter]]
+
+.sss 7.2.3.2. appendix
+
+{t/       simple }   [[file:../qwe.el,app:TODO List]]
+{t/    separated }   [[file:../qwe.el,app:][TODO List]]
+{t/  descriptive }   [[file:../qwe.el,app:TODO List][See the TODO list]]
+
+.sss 7.2.3.3. section
+
+{t/       simple }   [[file:../src/qwe-velt.el,sec:Introduction]]   .err avoid TOC entries!!  see below
+{t/    separated }   [[file:../src/qwe-velt.el,section:][Introduction]]
+{t/  descriptive }
+
+.bug The problem is that links can use short or long forms
+.todo Change 'qwe-link-follow--section' to support both
+
+.sss 7.2.3.4. subsection
+
+{t/       simple }   [[file:../src/qwe-velt.el,sse:Lists of Elements]]
+{t/    separated }   [[file:../src/qwe-velt.el,sse:][Lists of Elements]]
+{t/  descriptive }   [[file:../src/qwe-velt.el,sse:Lists of Elements][See these lists]]
+
+.sss 7.2.3.5. subsubsection
+
+{t/       simple }   [[file:../src/qwe-velt.el,sec:Regexps]]
+{t/    separated }   [[file:../src/qwe-velt.el,sec:][Regexps]]
+{t/  descriptive }   [[file:../src/qwe-velt.el,sec:Regexps][Regular expressions]]
+
+
+.sse 7.2.4. Evaluated links
+
+   [[qwe:toggle-show-links][show/hide link constructors]]
+
+.sss 7.2.4.1. QWE
+These links open access to an implementation-independent {t/API}. They are the
+most portable link of this section.
+
+{t/       simple }   [[file:../index.qwe,qwe:toggle-show-links]]
+{t/    separated }   [[file:../index.qwe,qwe:][toggle-show-links]]
+{t/  descriptive }   [[file:../index.qwe,qwe:toggle-show-links][show/hide link details (index.qwe)]]
+
+
+.sec 7.3. Links externally managed
+
+   [[elisp:(qwe-toggle-show-links)][show/hide link constructors]]
+
+.sse 7.3.1. http
+
+{t/       simple }   [[http://www.gnu.org]]
+{t/    separated }   {e/doesn't exists}
+{t/  descriptive }   [[http://www.gnu.org][GNU web site]]
+
+.sse 7.3.2. ftp
+
+{t/       simple }   [[ftp://ftp.gnu.org]]
+{t/    separated }   {e/doesn't exists}
+{t/  descriptive }   [[ftp://ftp.gnu.org][GNU ftp site]]
+
+.sse 7.3.3. Other URL's
+{t/http} and {t/ftp} links described above are handled by default by the function
+{t/browse-url}. Any other valid URL will be handled by this function, as
+well. See [[file:url,info:Supported URL Types][ suppoted URL's]].
+
+.sec 7.4. Images
+Images are handled slightly different from the other links. First, the type
+of the link, {t/'image:'}, is not shown in simple form (see below). Second,
+images can be automatically loaded when you open a file. This behavior can be
+controlled with the variable {t/'qwe-images-autoload'}. When its value is nil,
+then you can load an image by clicking the link. Also, you can use the menu
+options
+
+   {t/QWE | Preferences | Show images | Display all images}
+   {t/QWE | Preferences | Show images | Hide all images}
+
+to display or hide all images contained in the current buffer. Try these
+options here:
+
+.li1 Switch on/off automatic load of images
+.Li2 [[qwe:set-image-autoload][switch ON]]
+.Li2 [[qwe:unset-image-autoload][switch OFF]]
+
+.li1 [[qwe:display-images][Display]] or [[qwe:hide-images][Hide]] all images
+
+.li1 When all images are hidden, click on the links below
+.Li2 {t/simple }   [[image:../img/qwe-tiny.png]]
+.Li2 {t/separated }   [[image:][../img/qwe-small.png]]
+.Li2 {t/descriptive }   [[image:../img/qwe.png][See image]]
+
+Note: paths to image files can be absolute paths or relative to the directory
+where the file that contain the images is located.
+
+.cmt This directive will convert chapters into appendixes, starting at this
+.cmt point up to the end of file   --  .anchor appendix
+
+
+.#appendix
+.chp A. Additional Features
+Here you have additional features not mentioned before that can be used along
+with some of the previous presented {t/QWE} elements.
+
+.sec A.1. Programming Language Elements
+Eery sectioning elemen can be accompanied with a programming language element
+descriptor: variable, class, constant, function, etc, to determine that a
+given section is devoted to a particular element (and then, usually, the
+title of the section is the name of the element).
+
+For example:
+
+        .ver .sec.var MyVariable
+
+is a section about {e/a variable} called {t/'MyVariable'}. The complete set of
+elements you can use is:
+
+         .ver class const constant
+         .ver def define dir directory
+         .ver enum
+         .ver face file fn function
+         .ver iface import include interface
+         .ver label
+         .ver macro map member method mode
+         .ver namespace
+         .ver pkg package proc procedure
+         .ver record
+         .ver struct
+         .ver template type typedef
+         .ver union
+         .ver var variable
+
+Currently this type of information is neither used nor automatically
+generated. It depends on use by other extensions whether it will be
+deprecated or not. For instance, one could think about an index of objects
+selected by the author, not exhaustively by other means or tools.
+
+.sec A.2. Identifiers
+Annotations and decorations can have an optional identifier. These
+identifiers are written between square brackets:
+
+ .ver .fix[uc12] This is a fixme decoration
+
+            Here you have it: .fix[uc12] This is a fixme decoration
+
+You can [[qwe:toggle-show-element-ids][toggle Id visibility]] to see them. It is expected that Id's will be
+used by other extensions to link their related elements in a more closely
+manner. For example, one can think about the implementation of a given {e/use}
+{e/case} in which important steps can be sequentially followed by means of
+specially identified annotations. Requirements traceability could be another
+application.
+
+
+.chp B. End Notes
+
+.sec B.1. About this File
+Few things you should take care of in case you add contents:
+
+.Li1 Keep it updated
+.Li1 Use it to test every new functionality
+.Li1 Maintain its format and structure
+
+
+.chp C. Test Zone
+Don't read this appendix, it's just for test. {e/You have been warned.}
+
+.fix[hola] com va tot?
+Next
+
+(re-search-forward (concat ".fix\\(?:" "\\[[[:alpha:]_][[:alnum:]_-]*\\]" "\\)?"))
+(re-search-forward (concat "[[:alpha:]_][[:alnum:]_-]+"))
+
+.fix  hola
+
+.note++[ID] Hi
+
+[[qwe:toggle-show-element-ids]]
+
+.tip[id] This is a tip with an identifier
+
+.note--[id] Bye
+
+.wip++[t1] start
+
+.li1 List item level 1
+.li2 list item level 2
+.li3 list item level 3
+.li4 list item level 4
+
+.ni1 This is a numbered item
+.ni2 Numbered item, level 2
+.ni3 Anothe time, numbered, level 2
+
+.wip--[t1-a] end
+
+.cmt _____________________________________________________________________________
+.cmt
+.cfg.footer
+.cfg.mode Local Variables:
+.cfg.mode mode: text
+.cfg.mode qwe-delimiter-tag: ""
+.cfg.mode mode: qwe
+.cfg.mode End:
+.bbx qwe-catalog.qwe ends here

@@ -1,0 +1,542 @@
+.cfg.header
+.cfg.prj.name           QWE
+.cfg.prj.brief          QWE's not WEB for Emacs
+.cfg.prj.version        0.9.5-pre06
+.cfg.prj.author.name    Francesc Rocher
+.cfg.prj.homepage       [[http://github.com/rocher/qwe]]
+.cfg.prj.keywords       {e/QWE, literate programming, literate software engineering,}
+.cfg.prj.keywords       {e/software documentation, documentation generation,}
+.cfg.prj.keywords       {e/lightweight markup language}
+.cfg.prj.file           {t/requirements.qwe}
+.cfg.prj.file.desc      Specifications of {t/QWE} system, core extensions and other utilities
+.cfg.prj.copyright      Copyright (C) 2004-2020  Francesc Rocher
+.cfg.prj.license        GPL v3
+.cfg.prj.license++
+.ver This file is part of QWE.
+.ver
+.ver QWE is free software: you can redistribute it and/or modify
+.ver it under the terms of the GNU General Public License as published by
+.ver the Free Software Foundation, either version 3 of the License, or
+.ver (at your option) any later version.
+.ver
+.ver QWE is distributed in the hope that it will be useful,
+.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.ver GNU General Public License for more details.
+.ver
+.ver You should have received a copy of the GNU General Public License
+.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+.cfg.prj.license--
+.cfg.doc.style  book
+.cfg.header.filename ../header.qwe
+.cfg.header.end      [[qwe:hdr-update][update]]
+.cmt _____________________________________________________________________________
+.cmt
+
+.warning THIS FILE IS LARGELY UNFINISHED : DON'T REFER TO IT ------------------------
+.warning IT CONTAINS JUST AN SKELETON OF A WHAT COULD BE A SPECIFICATION OF QWE ----
+.warning IT COULD BE REMOVED IN THE FUTURE DEPENDING ON ITS OWN UTILITY AND EVOLUTION
+
+
+.ttl QWE Specification
+.cmt
+.stl         Version 0.9.5
+.cmt
+.todo Insert quotation here
+.cmt _____________________________________________________________________________
+.cmt
+.toc.begin Table of Contents
+
+.toc.chp       1. Introduction
+
+.toc.sec             1.1. Purpose
+
+.toc.sec             1.2. Document conventions
+
+.toc.sec             1.3. Intended audience
+
+.toc.sec             1.4. Contact information
+
+.toc.sec             1.5. References
+
+.toc.chp       2. Overall Description
+
+.toc.sec             2.1. System perspective
+
+.toc.sec             2.2. Extensibility mechanisms
+.toc.sse                   2.2.1. Ad-hoc interface
+.toc.sse                   2.2.2. Configuration items
+
+.toc.sec             2.3. Extensions
+.toc.sse                   2.3.1. Adding functionality
+.toc.sse                   2.3.2. Interfacing with QWE
+.toc.sse                   2.3.3. Interfacing with {t/IDE}s
+.toc.sse                   2.3.4. Portability
+
+.toc.sec             2.4. Core extensions
+.toc.sse                   2.4.1. Configuration items
+.toc.sse                   2.4.2. Table of contents
+.toc.sse                   2.4.3. QWEB
+
+.toc.sec             2.5. Command line interface
+.toc.sse                   2.5.1. Arguments
+.toc.sse                   2.5.2. Extensions
+
+.toc.sec             2.6. Distribution
+.toc.sse                   2.6.1. Components to be distributed
+.toc.sse                   2.6.2. Installation
+
+.toc.sec             2.7. Functional requirements
+
+.toc.sec             2.8. Operating environment
+
+.toc.sec             2.9. IDEe Integration
+.toc.sse                   2.9.1. User interface
+.toc.sse                   2.9.2. Visual appearance
+
+.toc.sec             2.10. Environment
+
+.toc.sec             2.11. Programming languages
+
+.toc.sec             2.12. Implementation constraints
+
+.toc.sec             2.13. Assumptions and dependencies
+
+.toc.chp       3. QWE System Features
+
+.toc.sec             3.1. System Description and Scope
+
+.toc.sec             3.2. Language Elements
+.toc.sse                   3.2.1. REQ-QWE-LNG summary
+
+.toc.chp       4. QWE Core extensions
+
+.toc.sec             4.1. Configuration Items
+
+.toc.sec             4.2. Table of Contens Generation
+
+.toc.sec             4.3. Shared headers
+
+.toc.chp       5. QWEB System
+
+.toc.chp       6. Command Line Interface
+
+.toc.sec             6.1. System Definition and Scope
+
+.toc.chp       A. Terms and Defintions
+
+.toc.chp       B. To Be Determined
+
+.toc.chp       C. ChangeLog
+.toc.end {Z/ update ToC }
+.cmt _____________________________________________________________________________
+.cmt
+.chp 1. Introduction
+This document provides a complete specification of {t/QWE}, and the {e/core contexts}
+every implementation must include. The complete set of components included
+are:
+
+.li1 {e/Configuration items}, a way to write keyword-value pairs independent of the
+.li1 current {t/QWE} implementation.
+
+.li1 {e/Table of Contents}, to automatically generate ToCs and other indexes.
+
+.li1 {t/QWEB}, a literate programming system implemented on top of {t/QWE} as a
+.li1 context or extension.
+
+.sec 1.1. Purpose
+The main purpose of the document is to provide a clear understanding of {t/QWE}
+and core contexts.
+
+.li1 To facilitate new implementations of {t/QWE} in other {t/IDEe}s, and therefore to
+.li1 server for testing and validation.
+
+.li1 To facilitate the implementation of new contexts in any of the existing {t/QWE}
+.li1 implementations.
+
+.li1 To establish a common framework to facilitate elicitation, discussion,
+.li1 analysis and specification of new features for {t/QWE} and for any of the
+.li1 contexts specified in this document.
+
+The document is divided into following chapters:
+
+.li1 {e/Overall Description}: describes the main purpose and features of the system.
+
+.li1 {t/QWE} {e/System Features}: describes detailed features and interfaces.
+
+.li1 {t/QWE} {e/Core Contexts}: describes configuration and table of contents contexts.
+
+.li1 {t/QWEB} {e/System}: describes {t/QWEB}, a literate programming system.
+
+.li1 {e/Command Line Interface}: describes the behavior and interface of a command
+.li1 line implementation of {t/QWE}.
+
+There are three appendixes at the end of the document:
+
+.li1 {e/Terms and Definitions}: includes a glossary with concepts used in this
+.li1 document.
+
+.li1 {e/To Be Determined}: includes features not yet specifed, to be determined later
+.li1 or requirements in progress, either to be accepted or to be clearly
+.li1 stated (drafts).
+
+.li1 {e/ChangeLog}: keeps track of changes to individual requirements.
+
+.sec 1.2. Document conventions
+This document is written using {t/QWE}. Therefore, although not necessary, this
+document if better read with {t/QWE}. All {t/QWE} elements are susceptible to be
+used, specially those most commonly used in document formatting and
+structure: character formatting, document sectioning and links. Decorations
+and annotations are used to improve readability or to annotate concepts to be
+done or developed.
+
+Convetions used are described below:
+
+.li1 Lists of items are generally unnumbered, except when an explicit order
+.li1 is required between the elements being listed.
+
+.li1 The name of a given requirement is obtained by the concatenation of the
+.li1 following strings, separated by a hyphen: the prefix {t/'REQ'}; three
+.li1 letters identifying the system the requirement applies to ({t/'QWE'}, {t/'CFG'}
+.li1 for config context, {t/'TOC'} for Table of Contents context, {t/'WEB'} for {t/QWEB}
+.li1 and {t/'CLI'} for Command Line Interface); three letters indentifying the
+.li1 subsystem or the section the requirement is located; two digits. The
+.li1 numbering sequence begins with {t/'00'} and is restarted every time the
+.li1 third element changes. One additional level of numbering can be used in
+.li1 some requirements divided, in turn, into subsections. For example:
+
+.li2 {e/REQ-QWE-SYS-00}, probably the first requirement
+
+.li2 {e/REQ-CFG-USR-08.2}, configuration context, user functions requirements, number
+.li2 2 in section {t/08}.
+
+.li2 {e/REQ-CLI-ARG-32}, command Line Interface system, arguments passed, requirement
+.li2 number 32 in this section
+
+.li1 References to other sections, documents or examples are written using {t/QWE}
+.li1 links.
+
+.sec 1.3. Intended audience
+Programmers and contributors in general willing to improve, help, send bugs
+or corrections, test and validate {t/QWE} implementations should carefully read
+this document. End-users please refer to the [[file:../index.qwe][index document]].
+
+.sec 1.4. Contact information
+If you want to send comments, bug, corrections or improvements to this
+document, please don't hesitate to do it. Authors really appreciate all forms
+of feedback. Contact them by e-mail at the [[file:../index.qwe,chp:][Contributors]] section.
+
+.sec 1.5. References
+None yet.
+
+
+.chp 2. Overall Description
+Depending on the intended use, {t/QWE} can be understood as:
+
+.li1 {e/A Comment Documentation System}, due to its ability to write and display
+.li1 embellished comments embeded into source code. At this level, {t/QWE} is
+.li1 used to write and display annotations, decorations, environments and
+.li1 format text.
+
+.li1 A {e/Document and Program Structuring System}, due to its capability to
+.li1 structure documents into sections, add ToCs (Table of Contents) and
+.li1 other indexes, use links to other sections or documents, embed images,
+.li1 etc. Combined with the previous capability, {t/QWE} can produce {t/WYSIWYGAC}
+.li1 (What You See Is What You Get and Compile) documents that are, at the
+.li1 same time, structured {t/WYSIWYG} documents and programs.
+
+.li1 A {e/Literate Programming System}, as it includes {t/QWEB}, a flexible, customizable
+.li1 and programming language independent literate programming system. It is
+.li1 implemented on top of {t/QWE} using contexts and other extensibility
+.li1 mechanisms.
+
+.li1 In the future, a {e/WYSIWYG Literate Software Engineering System}, capable to
+.li1 help performing main tasks associated with requirement management,
+.li1 development and maintenance of software systems. For this objective to
+.li1 be achieved, {t/QWE} offers extensibility mechanisms to implement new
+.li1 contexts.
+
+
+.sec 2.1. System perspective
+
+.sec 2.2. Extensibility mechanisms
+.sse 2.2.1. Ad-hoc interface
+.sse 2.2.2. Configuration items
+
+.sec 2.3. Extensions
+.sse 2.3.1. Adding functionality
+.sse 2.3.2. Interfacing with QWE
+.sse 2.3.3. Interfacing with {t/IDE}s
+.sse 2.3.4. Portability
+
+.sec 2.4. Core extensions
+.sse 2.4.1. Configuration items
+.sse 2.4.2. Table of contents
+.sse 2.4.3. QWEB
+
+.sec 2.5. Command line interface
+.sse 2.5.1. Arguments
+.sse 2.5.2. Extensions
+
+.sec 2.6. Distribution
+.sse 2.6.1. Components to be distributed
+.sse 2.6.2. Installation
+
+.sec 2.7. Functional requirements
+
+.sec 2.8. Operating environment
+.sec 2.9. IDEe Integration
+.sse 2.9.1. User interface
+.sse 2.9.2. Visual appearance
+
+.sec 2.10. Environment
+.sec 2.11. Programming languages
+.sec 2.12. Implementation constraints
+.sec 2.13. Assumptions and dependencies
+
+
+.chp 3. QWE System Features
+
+.sec 3.1. System Description and Scope
+{a/REQ-QWE-SYS-00} {t/QWE} can be used with any programming language that supports
+    {e/inline} {e/comments}. The beginning of an inline comment is indicated with an
+    arbitrary delimiter or sequence of tokens, and the newline character is
+    used to indicate the end. Well known examples are: {t/'//'} for {t/C}, {t/C++} and
+    {t/Java}, {t/'#'} for {t/shell}, {t/'Makefile'} and {t/'awk'}, amog others, etc.
+
+{a/REQ-QWE-SYS-02} {t/QWE} can be implemented in any {t/IDE}e (Integrated Development
+    Environment or Editor) having these features:
+
+.li1 {e/Extensibility}, to be able to write programs dealing with text, files, and
+.li1 user interface artifacts (menus, mouse events, etc)
+
+.li1 Configurable {e/syntax highlighting}, to differentiate visual elements as
+.li1 section titles, annotations, decorations, etc.
+
+.li1 {e/Font rendering}, supporting several font families and sizes in a document
+.li1 simultaneously to embellish visual elements
+
+.li1 {e/Image support}, to embed images into text
+
+.sec 3.2. Language Elements
+{a/REQ-QWE-LNG-00} When {t/QWE} is used in a source code program, all {t/QWE} language
+    elements shall be written as inline comments of the programming language
+    used by the program.
+
+{a/REQ-QWE-LNG-00} {t/QWE} uses a {e/delimiter} composed by:
+
+.li1  {e/comment delimiter}, composed by the inline comment character sequence or
+.li1 token depending on the programming language used
+
+.li1  configurable {e/delimiter tag}, to differentiate {t/QWE} comments and elements from
+.li1 regular comments
+
+.li1  dot. It is mandatory in order to separate the comment delimiter plus the
+.li1 delimiter tag from the {t/QWE} element
+
+.li1  {e/language element}. See [[a:][REQ-QWE-LNG-02]] to see what types and language element
+.li1 exist
+
+{a/REQ-QWE-LNG-01} The default delimiter shall be {t/'qwe'}, but the user must be
+    able to change and configure it for every file, even if a document is
+    composed by several files.
+
+{a/REQ-QWE-LNG-02} {t/QWE} language elements are:
+
+.Li1 Environments
+.Li1 Annotations
+.Li1 Decorations
+.Li1 Sectioning
+.Li1 Links
+.Li1 Format text
+
+{a/REQ-QWE-LNG-02.1} Environments are blocks of text, usually small ones,
+        containing a separate unit of discourse, specially marked text or {t/QWE}
+        comments. Possible environments are:
+
+.Li1 Abstract
+.Li1 Quotation
+.Li1 Verbatim
+.Li1 Comment
+.Li1 Tabular
+.Li1 Deleted text
+.Li1 TTY sequences of commands
+
+{a/REQ-QWE-LNG-02.2} Annotations are explanatory notes or comments used to
+    document other pieces of information, usually parts of the source code
+    written. Possible annotations are:
+
+.Li1 Note
+.Li1 Anchor
+.Li1 Todo
+.Li1 Work in progress
+.Li1 Fix me
+.Li1 Warning
+.Li1 Error
+.Li1 Bug
+
+{a/REQ-QWE-LNG-02.3} Decorations are notes or comments used to improve the
+    appearance of the note, give little hints or to embellish it. Possible
+    decorations are:
+
+.Li1 Tip
+.Li1 Box
+.Li1 Bold box
+.Li1 Released button
+.Li1 Pressed button
+
+{a/REQ-QWE-LNG-02.4} Sectioning elements are used to structure documents into
+    meaningful units of information. Possible sectioning elements are:
+
+.Li1 Title
+.Li1 Subtitle
+.Li1 Chapter
+.Li1 Section
+.Li1 Subsection
+.Li1 Subsubsection
+.Li1 Paragraph
+.todo Numbering: explaing how to renumber a document, appendixes, etc
+
+{a/REQ-QWE-LNG0-02.5} Links are references or navigation elements in a document
+    to another section of the same document or to another document. Can also
+    execute arbitrary code to compile a program, execute shell scripts or
+    even execute code in the implementation language used by {t/QWE}.
+
+{a/REQ-QWE-LNG-03} {t/QWE} has its own extensibility mechanism, consisting on the
+    posibility to add new language elements called {e/contexts}.
+
+.sse 3.2.1. REQ-QWE-LNG summary
+
+        {T/ REQ-QWE-LNG       MDO HML }
+        {U/ REQ-QWE-LNG-00     M   H  }
+        {V/ REQ-QWE-LNG-01     M   M  }
+        {U/ REQ-QWE-LNG-02     M   M  }
+
+
+.chp 4. QWE Core extensions
+
+.sec 4.1. Configuration Items
+{a/REQ-CFG-SYS-00}
+
+
+.sec 4.2. Table of Contens Generation
+{a/REQ-TOC-SYS-00}
+
+
+.sec 4.3. Shared headers
+{a/REQ-HDR-SYS-00}
+
+
+.chp 5. QWEB System
+{a/REQ-QWEB-SYS-00}
+
+
+.chp 6. Command Line Interface
+
+.sec 6.1. System Definition and Scope
+
+{a/REQ-CLI-SYS-00} The system shalll be fully compliant with the current {t/QWE}
+    system specification. When in conflict, {t/QWE} specification shall prevail.
+
+{a/REQ-CLI-SYS-01} The system shall support all core extensions distributed along
+    with {t/QWE}, at least to support usage make by {t/QWE} and other core
+    extensions. Currently these core extensions are: configuration items, table
+    of contents, shared headers and {t/QWEB}.
+
+{a/REQ-CLI-SYS-02} The system shall accept command line arguments to define its
+    main behavior: document generation, format conversion, source code
+    extraction and any other main feature defined in section [[sec:][System features]]
+    of this document. Only one of this type of argument shall be accepted. A
+    message error shall inform the user about this point if more thant one is
+    selected.
+
+{a/REQ-CLI-SYS-03} The system shall accept additional command line arguments to
+    configure the main behavior.
+
+{a/REQ-CLI-SYS-04} Graphical support trough a user interface is not required, but
+    desirable.
+
+See [[a:][REQ-QWE-SYS-01.02]]
+
+
+.#appendix
+.chp A. Terms and Defintions
+
+{i/Context} An extension of the {t/QWE} system that implements a module to be used by
+    end-users.
+
+{i/Core Context} A context that implements a basic module that can be used to
+    implement other contexts or even parts of the main system.
+
+{i/External Context} A context implemented at a different level that the {t/QWE}
+    system it is beign used. That is, using another, probably different,
+    programming language. Refer to [[a:][REQ-CTX-SYS-??]].
+
+{i/Native Context} A context implemented at the same level that the {t/QWE} system
+    implentation it pertains to. That is, using the same programming language
+    and {t/IDEe} extensibility mechanisms. Refer to [[a:][REQ-CTX-SYS-??]].
+
+{i/IDEe} {t/IDE} or Editor susceptible to implement {t/QWE}.
+
+{i/Implementation language }In a given {t/IDEe}, the programming language used to
+    implement {t/QWE} and, probably, the same one used to implememt {t/QWE} core
+    contexts.
+
+{i/Inline comment} Inline comments are those that use a newline character to
+    indicate the end of a comment, and an arbitrary delimiter or sequence of
+    tokens to indicate the beginning of a comment. {t/QWE} cannot be used with a
+    programming language without this type of comments. The table below
+    includes almost all programming languages supported depending on the
+    delmiter used.
+
+   {T/  Symbol   Languages                                               }
+   {R/    //     ActionScript, C (C99), C++, C#, D, Delphi, IDL, Java,   }
+   {U/           JavaScript, Objective-C, PHP, Pike                      }
+   {V/    ::     Batch file                                              }
+   {U/    \      Forth                                                   }
+   {S/    %      DocTeX, Erlang, LaTeX, MATLAB, Metafont, Metapost,      }
+   {V/           PostScript, Prolog, S-Lang, SliTeX, TeX, Visual Prolog  }
+   {U/    !      Basic Plus, DCL, F90, Fortran, Simula                   }
+   {V/    *      Assemblers (many), Cobol, Mixal                         }
+   {R/           Awk, Bash, Cfengine, GDB script, ICON, Jython, M4,      }
+   {R/    #      Makefile files, Maple, Octave, Perl, PHP, Python, Ruby, }
+   {U/           Shell, Sieve, Windows PowerShell                        }
+   {V/    '      Visual Basic, VBscript                                  }
+   {U/   dnl     autoconf                                                }
+   {S/    ;      Assemblers (many), Autoit, AutoHotkey, DNS zone files,  }
+   {V/           DSSSL, IDLwave, Ledit, Lisp, Scheme                     }
+   {U/ @COMMENT  BiBTeX                                                  }
+   {V/    @c     texinfo                                                 }
+   {R/    --     ADA, Applescript, Eiffel, Euphoria, Haskell, Lua, SNMP  }
+   {U/           MIBs files, VHDL                                        }
+   {V/    "      Vim Script                                              }
+   {U/    ||     Curl                                                    }
+   {V/   REM     Basic, COMMAND.COM, cmd.exe                             }
+
+
+{i/Target language} The programming language used inside a {t/QWE} document.
+
+
+.chp B. To Be Determined
+.todo This section must be filled just before relasing the first version
+
+
+.chp C. ChangeLog
+
+{b/2009-06-10} Francesc Rocher [[mailto:][<rocher@users.noreply.guthub.com>]]
+
+.li1 [[a:][REQ-QWE-SYS-00]]: named changed to meet requirement naming convetions.
+
+{b/2009-06-09}  Francesc Rocher  [[mailto:][<rocher@users.noreply.github.com>]]
+
+.li1 Initial version of the document.
+
+.cmt _____________________________________________________________________________
+.cmt
+.cfg.footer
+.cfg.mode Local Variables:
+.cfg.mode mode: text
+.cfg.mode qwe-delimiter-tag: ""
+.cfg.mode mode: qwe
+.cfg.mode End:
+.bbx qwe-spec-0.9.5.qwe ends here

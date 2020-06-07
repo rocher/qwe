@@ -1,0 +1,100 @@
+//.cfg.header
+//.cfg.prj.name           QWE
+//.cfg.prj.brief          QWE's not WEB for Emacs
+//.cfg.prj.version        0.9.5-pre06
+//.cfg.prj.author.name    Francesc Rocher
+//.cfg.prj.homepage       [[http://github.com/rocher/qwe]]
+//.cfg.prj.keywords       {e/QWE, literate programming, literate software engineering,}
+//.cfg.prj.keywords       {e/software documentation, documentation generation,}
+//.cfg.prj.keywords       {e/lightweight markup language}
+//.cfg.prj.file           {t/var-subst.cc.qweb}
+//.cfg.prj.file.desc      Variable substitution exmples under QWEB
+//.cfg.prj.copyright      Copyright (C) 2004-2020  Francesc Rocher
+//.cfg.prj.license        GPL v3
+//.cfg.prj.license++
+//.ver This file is part of QWE.
+//.ver
+//.ver QWE is free software: you can redistribute it and/or modify
+//.ver it under the terms of the GNU General Public License as published by
+//.ver the Free Software Foundation, either version 3 of the License, or
+//.ver (at your option) any later version.
+//.ver
+//.ver QWE is distributed in the hope that it will be useful,
+//.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+//.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//.ver GNU General Public License for more details.
+//.ver
+//.ver You should have received a copy of the GNU General Public License
+//.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+//.cfg.prj.license--
+//.cfg.header.filename ../header.qwe
+//.cfg.header.end [[qwe:hdr-update][update]]
+//
+//.qweb < main >=
+//
+//.ttl Variable Substitution
+//.qweb < SUBTITLE >
+//
+//.abs This document shows how variable substitution works in {t/QWEB}. It is
+//.abs structured into qweb-blocks. The first one contains only the abstract
+//.abs itself and few instructions to complete the example. The rest contain
+//.abs the example and an explanation to help readers understand it
+//.abs better. Please note that the second qweb-block is part of the example
+//.abs itself, as it is referred to with a variable defined later.
+//
+//.qweb < $(SECOND_QWEB_BLOCK) >
+//.qweb < Colophon >
+//.qweb <--->
+//
+//.qweb < Example >=
+//
+// Inside qweb-blocks variable substitution works in two steps:
+//
+//.li1 All references of the form {t/'$(VARIABLE)'} are replaced by their
+//.li1 respective value, if any
+//
+//.li1 All occurrences of two consecutive dollar characters, are replaced by
+//.li1 one dollar character: {t/'$$$$' --> '$$'}
+//
+// Important: variable substitution takes place {e/only} inside qweb-blocks.
+//
+// Variable substitution is performed with one variable at a time, in the
+// same order they appear defined in the document. Multiple substitution in
+// the same place is allowed:
+//
+//.cfg.qweb.A        VAR_A
+//.cfg.qweb.B        VAR_B
+//.cfg.qweb.VAR_B    The contents of VAR_B variable
+//.cfg.qweb.VAR_A    The contents of VAR_A variable including "$(B)"
+//
+//.cfg.qweb.SECOND_QWEB_BLOCK  Example
+//.cfg.qweb.STL_KEYWORD        subtitle
+//.cfg.qweb.mark-eoqb no
+//
+//.ver $$(A)   ---> $(A)
+//.ver $$($$(A) ---> $$(VAR_A) ---> $($(A))
+//.ver $$(B)   ---> $(B)
+//.ver $$(C)   ---> $(C)
+//
+//.qweb <--->
+//
+//.qweb < SUBTITLE >=
+//.$(STL_KEYWORD) Results of Running the Example
+//.qweb <--->
+//
+//.sec Running the Example
+// In order to see how to {t/QWEB} works it is necessary to obtain the source
+// code, compile and run it. Obtaining the source code is easy. Just evaluate
+// [[elisp:][(qweb-make-source-code)]], or use the link itself, to generate the source
+// code. After that, follow the instructions on the recently created buffer.
+//
+//.qweb < Colophon >=
+//.cfg.footer
+//.cfg.mode Local Variables:
+//.cfg.mode mode: c++
+//.cfg.mode qwe-delimiter-tag: ""
+//.cfg.mode mode: qwe
+//.cfg.mode End:
+//.bbx $(FILENAME) ends here
+//.qweb <--->
+//.bbx VarSubst.cc.qweb ends here

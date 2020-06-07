@@ -1,0 +1,84 @@
+//qwe.sec Simple Hello World example
+//qwe
+//qwe This file shows the minimum to make a program say {s/Hello, world}
+//qwe in {t/C} language.
+//qwe
+//qwe
+//qwe.par Includes
+//qwe
+//qwe In order to use the {e/C standard library}, we need to tell the
+//qwe compiler what header files we are going to use. Usually thereis
+//qwe an {e/include} section at the top of the file with all the {k/#include}
+//qwe directives:
+//qwe
+//qwe.qweb < Includes >=
+
+#include <stdio.h>
+
+//qwe.qweb <->
+//qwe
+//qwe.par variables
+//qwe
+//qwe After this, there is usually a {e/varible} section in which all
+//qwe global variables are defined.
+//qwe
+//qwe This is our {t/C} code:
+//qwe
+//qwe.qweb < Global Varibales >=
+
+char *hello_world = "Hello, world";
+
+//qwe.qweb <------------>
+//qwe
+//qwe.par functions
+//qwe
+//qwe Next section is usually a {e/function section} in which all
+//qwe functions are declared or defined.
+//qwe
+//qwe This is our function:
+//qwe
+//qwe.qweb < Functions >=
+
+void say_hello_world(void)
+{
+    printf("%s\n", hello_world);
+}
+
+//qwe.qweb <----------->
+//qwe
+//qwe.par main function
+//qwe
+//qwe The very first function that gets executed when our program run
+//qwe is the {k/main} function. Its definition lets programmers capture
+//qwe arguments given in the command line, but for now we will leave
+//qwe this empty:
+//qwe
+//qwe.qweb < Main C function >=
+
+int main(void)
+{
+    say_hello_world();
+
+    return 0;  //qwe.tip no error code returned
+}
+
+//qwe.qweb <----------------->
+//qwe
+//qwe.par whole program
+//qwe
+//qwe Now we have defined all elements. It's time to put them
+//qwe together:
+//qwe
+//qwe.qweb < main >=
+//qwe.qweb    < Includes >
+//qwe.qweb    < Global Variables >
+//qwe.qweb    < Functions >
+//qwe.qweb    < Main C Function >
+//qwe.qweb    <----------------->
+//qwe
+//qwe.par create, compile and run
+//qwe
+//qwe QWEB offers a very easy way to gather all these components to
+//qwe create the program, compile and run.
+//qwe
+//qwe Evaluate [[elisp:][(qweb-make-source-code)]]

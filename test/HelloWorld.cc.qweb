@@ -1,0 +1,125 @@
+//.cfg.prj.name           QWE
+//.cfg.prj.brief          QWE's not WEB for Emacs
+//.cfg.prj.version        0.9.5-pre06
+//.cfg.prj.author.name    Francesc Rocher
+//.cfg.prj.homepage       [[http://github.com/rocher/qwe]]
+//.cfg.prj.keywords       {e/QWE, literate programming, literate software engineering,}
+//.cfg.prj.keywords       {e/software documentation, documentation generation,}
+//.cfg.prj.keywords       {e/lightweight markup language}
+//.cfg.prj.file           {t/HelloWorld.cc.qweb}
+//.cfg.prj.file.desc      Hello World, QWEB
+//.cfg.prj.copyright      Copyright (C) 2004-2020  Francesc Rocher
+//.cfg.prj.license        GPL v3
+//.cfg.prj.license++
+//.ver This file is part of QWE.
+//.ver
+//.ver QWE is free software: you can redistribute it and/or modify
+//.ver it under the terms of the GNU General Public License as published by
+//.ver the Free Software Foundation, either version 3 of the License, or
+//.ver (at your option) any later version.
+//.ver
+//.ver QWE is distributed in the hope that it will be useful,
+//.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+//.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//.ver GNU General Public License for more details.
+//.ver
+//.ver You should have received a copy of the GNU General Public License
+//.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+//.cfg.prj.license--
+//.cfg.header.filename ../header.qwe
+//.cfg.header.end [[qwe:hdr-update][update]]
+//
+//.cfg.qweb.FILENAME            HelloWorld.cc
+//.cfg.qweb.BASENAME            HelloWorld
+//.cfg.qweb.file.overwrite      yes
+//
+//.qweb < The title >=
+//
+//.ttl Hello World, QWEB
+//.stl The canonical first example
+//
+//.qweb <--->
+
+
+//.sec Main qweb-block
+//
+// This is the main qweb-block, the place where all starts. Click on the
+// qweb-block references to look for their definitions. Click near the end of
+// the link to go forward. Click near the beginning of the link to go
+// backwards.
+//
+// Note that the we-block called {t/'The title'} pertains to both the {t/QWEB}
+// document and the {t/C++} source file.
+//
+//.qweb < main >=
+//.qweb    < The title >
+//.qweb    < Instructions >
+//.qweb    < The program >
+//.qweb    < Colophon >
+//.qweb    <----->
+
+
+//.sec Instructions
+//
+// To complete the example you should generate the program from the current
+// document. That is, you should transform {t/'HelloWorld.cc.qweb'} into
+// {t/'HelloWorld.cc'}. To do it, evaluate [[elisp:][(qweb-make-source-code)]] for the current
+// file. It is easier and convenient to follow the link. The command will
+// automatically open the genrated file, which uses {t/QWE} as well. Once you're
+// visiting it, please follow next steps.
+//
+//
+//.qweb < Instructions >=
+//
+// The example is composed by three files: {t/HelloWorld.qweb.cc}, the source
+// document; {t/HelloWorld.cc}, the generated source file that contains the {t/C++}
+// code; and {t/HelloWorld}, the executable.
+//
+// If you have direct acces to {t/g++}, follow these steps to complete the
+// example:
+//
+//.li1 Once the file {t/HelloWorld.cc} has been generated, and while you are
+//.li1 reading it:
+//
+//.li2 Compile {t/HelloWorld.cc} with [[shell:][g++ -o $(BASENAME) $(FILENAME)]]
+//
+//.li2 Run the program using [[shell:][./$(BASENAME)]]
+//
+// Once you've seen the result on the Emacs mini-buffer, you can clean the
+// example by removing genrated files with [[shell:][rm -v $(BASENAME) $(FILENAME)]].
+//
+//.qweb <--->
+//
+// Please note that variable references of the form {t/ $(NAME) } in previous
+// items will be subsituted in the generated file. Links will be valid only
+// there (in {t/HelloWorld.cc}), not here (in {t/HelloWorld.qweb.cc}).
+
+//.sec The program
+//
+// Finally, this qweb-block contains the whole program.
+//
+//.qweb < The program >=
+//
+// As simple as usual...
+
+#include <iostream>
+
+int main( void )
+{
+   std::cout << "Hello, world!" << std::endl;
+
+   return( 0 );
+}
+
+//.qweb <--->
+
+//.qweb < Colophon >=
+//.cfg.footer
+//.cfg.mode Local Variables:
+//.cfg.mode mode: c++
+//.cfg.mode qwe-delimiter-tag: ""
+//.cfg.mode mode:qwe
+//.cfg.mode End:
+//.bbx HelloWorld.cc ends here
+//.qweb <--->
+//.bbx HelloWorld.cc.qweb ends here

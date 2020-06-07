@@ -1,0 +1,14 @@
+
+Basic Installation
+==================
+
+It is planned to provide a better installaion method and detailed
+instructions. At the moment, simply add directories 'src' and 'ext' to your
+`load-path' Emacs variable and load the library `qwe'. This will load all
+core functionality, plus `cfg' and `toc' extensions. To quickly see how QWEB
+works, load library `qweb' and visit one of the examples provided in direcory
+'test'. Enjoy them!
+
+
+Francesc Rocher
+16th Decembre 2009

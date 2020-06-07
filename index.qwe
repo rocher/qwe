@@ -1,0 +1,708 @@
+.cfg.header
+.cfg.prj.name           QWE
+.cfg.prj.brief          QWE's not WEB for Emacs
+.cfg.prj.version        0.9.5-pre06
+.cfg.prj.author.name    Francesc Rocher
+.cfg.prj.homepage       [[http://github.com/rocher/qwe]]
+.cfg.prj.keywords       {e/QWE, literate programming, literate software engineering,}
+.cfg.prj.keywords       {e/software documentation, documentation generation,}
+.cfg.prj.keywords       {e/lightweight markup language}
+.cfg.prj.file           {t/index.qwe}
+.cfg.prj.file.desc      User and developer index page
+.cfg.prj.copyright      Copyright (C) 2004-2020  Francesc Rocher
+.cfg.prj.license        GPL v3
+.cfg.prj.license++
+.ver This file is part of QWE.
+.ver
+.ver QWE is free software: you can redistribute it and/or modify
+.ver it under the terms of the GNU General Public License as published by
+.ver the Free Software Foundation, either version 3 of the License, or
+.ver (at your option) any later version.
+.ver
+.ver QWE is distributed in the hope that it will be useful,
+.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.ver GNU General Public License for more details.
+.ver
+.ver You should have received a copy of the GNU General Public License
+.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+.cfg.prj.license--
+.cfg.doc.style           book
+.cfg.doc.title           QWE
+.cfg.doc.subtitle        Index page
+.cfg.doc.show.delimiters invisible
+.cfg.header.end          [[qwe:hdr-update][update]]
+.cmt _____________________________________________________________________________
+.cmt
+.cmt
+ [[image-center:img/qwe.png]]
+.cmt
+ [[image-center:img/qwe-title.png]]
+.cmt
+.quo                                    The use of a source program as a
+.quo                          documentation medium imposes some
+.quo                          constraints. On the other hand, the intimate
+.quo                          availability of the source program, line by
+.quo                          line, to the reader of the documentation makes
+.quo                          possible new techniques. The time has come to
+.quo                          devise radically new approaches and methods for
+.quo                          program documentation.
+.quo
+.quo                                    {i/Frederick Brooks}
+.quo                                    The Mythical Man-Month
+.quo                                    Addison-Wesley, 1995
+.cmt
+.cmt
+.toc.begin Table of Contents
+
+.toc.chp       1. Preface
+
+.toc.chp       2. Introducing QWE
+
+.toc.sec             2.1. QWE Elements
+
+.toc.sec             2.2. Syntax Rules
+
+.toc.chp       3. Extensions
+
+.toc.sec             3.1. Core extensions
+
+.toc.sec             3.2. Third party extensions
+.toc.sse                   3.2.1. QWE Header
+
+.toc.chp       4. Examples
+
+.toc.sec             4.1. QWE Documents
+
+.toc.sec             4.2. QWEB system
+
+.toc.chp       5. Implementations
+
+.toc.sec             5.1. QWE for Emacs
+
+.toc.sec             5.2. QWE on the command line
+
+.toc.sec             5.3. Other implementations
+
+.toc.chp       A. Other files
+
+.toc.chp       B. References
+
+.toc.sec             B.1. Web Sites
+
+.toc.sec             B.2. Wikipedia Articles
+
+.toc.chp       C. Contributors
+.toc.end {Z/ update ToC }
+.cmt
+.cmt
+.chp 1. Preface
+.cmt
+.quo                                    [...] The solution, I think, is to
+.quo                          merge the files, to incorporate the
+.quo                          documentation in the source program. This is at
+.quo                          once a powerful incentive toward proper
+.quo                          maintenance, and an insurance that the
+.quo                          documentation will always be handy to the
+.quo                          program user. Such programs are called
+.quo                          self-documenting.
+.cmt
+.quo                                    {i/Frederick Brooks}
+.quo                                    The Mythical Man-Month
+.quo                                    Addison-Wesley, 1995
+.cmt
+.cmt
+This is {i/QUDIP}, the {t/QWE} {e/User and Developer Index Page}. It is structured as a
+set of references to other documents, examples, manuals and implementaton
+files.
+
+Section two, [[sec:][Introducing QWE]], gives an overview of the system, its main
+features and capabilities. If you are an impatient first-time user willing to
+see {t/QWE} in action then you will be interested in the {t/QWE} {e/Quick Start Guide}
+for C++, [[file:doc/QQSG.el][QQSG/C++]]. .todo write it !!
+
+If you already know what's {t/QWE} and have serious interest to contribute with
+{t/QWE} development, then, depending on whether you are a:
+
+.li1 developer interested to make new extensions for {t/QWE} for {t/Emacs}, or for any
+.li1 other editor, please read section [[chp:][Extensions]] for more information.
+
+.li1 or a developer interested to implement {t/QWE} for another {t/IDE} or editor, please
+.li1 consult [[sec:][Other implementations]].
+
+.li1 or a literate programming fan impatient to see {t/QWEB} in action, go to section
+.li1 [[sec:][QWEB System]].
+
+In any case, remember to access {t/QWE} homepage for more information about
+latest news, development status and contributions.
+
+
+.chp 2. Introducing QWE
+.cmt
+.quo                                    The documentation parts of the
+.quo                          program description should allow for the same
+.quo                          freedom of expression that one would have in an
+.quo                          ordinary technical paper. This means that the
+.quo                          document describing the program should consist
+.quo                          of formatted text, rather than being a plain
+.quo                          text file.
+.cmt
+.quo                                    {i/Marc van Leeuwen}
+.quo                                    Requirements for Literate Programming, in CWEBx Manual
+.cmt
+.cmt
+{t/QWE} is a lightweight markup language aiming to improve software
+documentation, presentation and maintenance. It is inspired by few ideas
+brought from literate programming systems, being {t/WEB} the most popular, and
+markup languages, being {t/LaTeX} the most inspiring for {t/QWE}.
+
+{t/QWE} supports, among others, these features:
+
+.li1 {b/Document structure} elements: chapters, sections, subsections, subsubsections
+.li1 and paragraphs.
+
+.li1 {b/Annotations}, elements to remark importants parts of the document: notes,
+.li1 todos, fixmes, warnings, errors, bugs, work-in-progress.
+
+.li1 {b/Decorations}, elements to embellish notes: tips, boxes, bold-boxes, released
+.li1 buttons, pressed buttons.
+
+.li1 {b/Text formatting}: bold, italic, emphasized, underline, fixed and colored
+.li1 highlight in yellow, green, orange and cyan.
+
+.li1 {b/Extensions} or {b/Contexts}: provided to extend initial functionality. {e/Core}
+.li1 {e/extensions} (distributed along with {t/QWE}) are:
+
+.li2 {b/Configuration items}, used by {t/QWE} itself to configure some aspects of
+.li2 documents. It is also used by {t/QWEB}.
+
+.li2 {b/Headers}, used to maintain a coherent set of header items across
+.li2 several files.
+
+.li2 {b/Table of Contents}, to automatically generate {t/ToC}'s.
+
+.li2 {b/QWEB}, a literate programming system implemented on top of {t/QWE}.
+
+.li1 Tables, numbered and unnumbered items lists (numbering still under
+.li1 development)
+
+.li1 {b/References and hyperlinks}: links can point to other parts in the
+.li1 document, to other documents, files or even can evaluate elisp
+.li1 expressions, execute arbitrary commands, insert images, or handle any
+.li1 type of link with an external browser (http, ftp, etc).
+
+.li1 {b/Customizable visibility} of tags: can be invisible, viewed as text or as
+.li1 little labels.
+
+{t/QWE} aims to be used as a kind of literate programming system based on a
+lightweight markup language with {e/quasi}-{t/WYSIWYG} support. {t/QWE} can be used in
+conjuntion with virtually any programming language. The only restriction is
+that the programming language used must support inline comments, those that
+use a newline character to indicate the end of the comment, and a delimiter
+to indicate its beginning.
+
+{t/QWE} for {t/Emacs} is just a {t/QWE} implementation. A special one, of course, because
+it was created as a proof of concept and gradually incorporated additional
+modules, features and ideas. Inside Emacs, {t/QWE} is implemented as a minor mode
+to be used in conjunction with the major mode used for the programming
+language currently used.
+
+{t/Emacs} was the perfect environment at the time {t/QWE} was created. On the other
+hand, modern {t/IDE}s could implement {t/QWE} preserving all its main features, and
+even could incorporate new extensions designed specifically for these {t/IDE}s.
+
+{t/QWE} has been created according to these principles:
+
+.li1 {b/IDE-independent}  {t/QWE}'s not {t/IDE}-dependent, it can be implemented on any
+.li1 IDE supporting a well known set of features (its future -and complete-
+.li1 specification will precisely enumerate them)
+
+.li1 {b/Human readability}  {t/QWE} elements don't depend on binary formats and can be
+.li1 used under any file encoding (ASCII, UTF-8, etc)
+
+.li1 {b/Extensibility}  {t/QWE} is extensible, and every implementation must provide
+.li1 support to new extensions
+
+.li1 {b/Flexibility}  {t/QWE} elements can be specified in two ways: using a three
+.li1 characters code or a complete word
+
+.li1 {b/Inline comments}  All {t/QWE} elements exist {e/only} as inline comments
+
+thus,
+
+.li1 {b/WYSIWYC} ({e/What You See Is What You Compile}) {t/QWE} files can be directly
+.li1 understood by the compiler of the programming language used, so there is
+.li1 no need to have an additional process to separate or arrange source code
+.li1 from {t/QWE} files
+
+.par Extended Use
+{t/QWE} is not limited to deal with programs. Instead, {t/QWE} is aimed to be a
+{e/general} {e/purpose} tool to aid and improve readability of software
+documentation, programs, requirements and any artifact of the software
+engineering field.
+
+{t/QWE} can be used not only to write literate programs, but also, for instance,
+{e/literate use cases}. Suppose your software system has quite complex use cases,
+with an intrincate design embedded in a sophisticated architecture. New
+programmers or maintainers should appreciate an index/home page with a
+directory of use cases, every one explained and documented using links to the
+code, decorated with tips, annotations, tables, figures, etc. A rich, updated
+documentation of the architecture and design of a system near its source code
+is one of the most valuable things for a new maintainer.
+
+{t/QWE} is aimed to provide a documentation system where all levels of abstration
+and development can coexist together. Architecture, design and implementation
+of a software system are not independent areas of the same field. {t/QWE} tries
+to provides a way to merge documentation of these three levels in a
+documentation system that supports structured documents, formatted text,
+links, images, annotations, decorations, tables, list, etc.
+
+
+.sec 2.1. QWE Elements
+By {t/QWE} elements we refer to all elements of the language. As such, they are
+constructed according to a set of syntax rules relatively simple that let
+create an open set of language elements. The semantics associated to each
+element can refer to:
+
+.li1 {b/Contents Structure}
+
+.li1 {b/Document Management}
+
+.li1 {b/Code Reference}
+
+.li1 {b/Links}
+
+.li1 {b/Format text}
+
+The first group is composed by those elements that give structure to the
+document (chapters, sections, etc) and those that compose environments
+(abstracts, quotations, verbatim, etc).
+
+The second group is composed by {e/directives} (direct commands to {t/QWE}), as
+{t/appendix} or {t/include}, entries for the table of contents (partially managed by
+the user, but mainly automatically managed by Emacs), and {e/contexts}, used by
+extensions to create new elements and to add new functionality.
+
+The last group is composed by those elements that facilitate the relationship
+between the source code and the documentation, divided between {e/annotations}
+and {e/decorations}.
+
+No less important are the elements to format text and links. The former are
+used to format text (bold, italic, etc). Links can refer to a big amount of
+different ojects, as web pages, sections or particular positions of documents
+or files, {e/info} and {e/man} pages, and even can evaluate {t/elisp} code, execute shell
+commands or display images.
+
+.sec 2.2. Syntax Rules
+All {t/QWE} elements are written as a comment of a given programming language, so
+the syntax of {t/QWE} elements vary from one programming language to another. All
+{t/QWE} elements are composed by the following parts:
+
+.li1 {b/Delimiter}, composed in turn by:
+
+.li2 {b/Comment delimiter}, which depends exclusively on the programming language
+.li2 used
+
+.li2 {b/Delimiter Tag}, used to distinguish {e/normal comments} (those that pertain
+.li2 to the program, not to the document) from {t/QWE} comments, used to
+.li2 construct the elements of the language. Can be the empty string, as in
+.li2 this document.
+
+.li1 A dot, to separate the delimiter from the element
+
+.li1 {b/Language Element}, composed in turn by more or less optional items,
+.li1 depending on the type of the element
+
+The following image sumarizes all these components:
+
+
+ [[image-center:img/qwe-delimiter.png]]
+
+
+.par Core QWE Elements
+It is important to remark that {e/core} {t/QWE} elements are defined by default and
+cannot be changed nor deleted. These elements provide minimal
+functionality. As said above, {e/contexts} can be used to add new elements and
+functionality.
+
+.par Migration to other IDEs
+It might be necessary to create a defintion language to make {t/QWE} elements
+definition portable. That is, defintions should be independent of the new
+editor or {t/IDE} and its internal mechanisms. Right now, as this process looks
+far away in time, there is no such definition language for {t/QWE} elements. The
+definition language in question could be perfectly based on {t/xml}, and an
+appropriate {t/DTD} to define {t/QWE} elements. It could look like this:
+
+.ver     <?xml version="1.0">
+.ver        <qwe>
+.ver           <context name="UseCase" regexp="ucs\\|usecase">
+.ver              <delimiterfont family="default" fgcolor="red" bgcolor="white" />
+.ver              <textfont family="fixed" size="1.0" fgcolor="white" bgcolor="red4" />
+.ver           </context>
+.ver        </qwe>
+.ver     </xml>
+
+The files with new definitions could be incorporated into Emacs with the
+appropriate {t/xml} parser using the current implementation.
+
+
+.chp 3. Extensions
+.cmt
+.quo                                    My experience is that well-developed
+.quo                          modular designs, coupled with good system
+.quo                          documentation, descriptive identifier names and
+.quo                          a natural-language narrative, result in code
+.quo                          that's a pleasure to work with and efficient to
+.quo                          maintain.
+.cmt
+.quo                                    {i/David Zokaities}
+.quo                                    Feedback
+.quo                                    Software Development, March 2002
+.cmt
+.cmt
+Also called {e/contexts}, as they are implemented using a {t/QWE} language element
+with the same name. There are few ones distributed along with {t/QWE}, the {e/core}
+{e/extensions}, and other distributed by other people.
+
+Extensions can be {e/native} or {e/external}. The former are implemented using some
+extension mechanism in a given {t/IDE} or editor. The later are implemented using
+some programming language, probably as a command.
+
+Native extensions are supposed to be supported by the {t/IDE} or editor itself,
+and therefore are available in every platform it is supported. They are just
+{t/IDE}-{e/dependent}, but not platform-dependent. So they must be implemented in
+every {t/IDE} or editor.
+
+External extensions, on the other hand, are {t/IDE}-{e/independent}. Thus, for a
+given platform in which the extension is supported, external extensions are
+available for all {t/IDE}s or editors supporting {t/QWE}. So one, portable
+implementation is enough.
+
+Some extensions can be implemented in both forms, depending on a number of
+circumstances. For instance, {t/QWEB} has been first implemented in {t/QWE} for
+{t/Emacs}. This means that, at the moment, it is only available for {t/Emacs}, no
+matter the platform {t/Emacs} is being used. Fortunately, {t/Emacs} is well supported
+under several platforms. In a near future, plans will be established to
+implement {t/QWEB} as a command, probably integrated into the {t/QWE} {e/Command} {e/Line}
+{e/Interface}. This way {t/QWEB} will be {e/independent of} {t/Emacs}.
+
+Another reason an extension can be implemented in two ways is that it can
+behave {e/slightly different}, depending on the environment it is used. One can
+think about doing some things with menus or mouse events (under an {t/IDE}) that
+cannot be done passing command line arguments (externally), and {e/vice-versa}.
+
+Finally, an extension can be just a proof of concept for a given {t/IDE}, and
+later can be made generally available migrating it in an external form.
+
+On the other hand, there are extensions that are better implemented only
+externally. For example, there should be a more or less extended collection
+of {e/format converters} to convert documents from {t/QWE} to {t/HTML}, {t/LaTeX}, {t/SGML},
+etc. These extensions are clearly {t/IDE}-independents, and therefore an external
+implementation would benefit all {t/QWE} implementations.
+
+.sec 3.1. Core extensions
+These extensions are used by {t/QWE} itself and other extensions:
+
+.Li1 [[file:][ext/qwe-cfg.el]]	The {t/QWE} Configuration System
+.Li1 [[file:][ext/qwe-toc.el]]	The {t/QWE} Table of Contents Manager
+.Li1 [[file:][ext/qweb.el]]		The {t/QWEB} Literate Programming System
+
+.todo User doc
+        A document for each extension should be written to show users how to
+        use it, except for qweb, which has already its own manual.
+
+.todo Developer doc
+        A document should be written to explain to developers how to create
+        new extensions, with examples and references to qwe-toc, qwe-cfg and
+        qweb, as well as to the (current draft) document
+        [[file:][draft/qwe-spec-0.9.5.qwe]].
+
+.sec 3.2. Third party extensions
+
+.sse 3.2.1. QWE Header
+This extension is distributed along with {t/QWE} for {t/Emacs}, but it is not a core
+extension as it is not required to be implemented in other {t/QWE}
+implementations. Consult the [[file:ext/qwe-hdr.el,sec:][User Manual]] included in the implementation file.
+
+
+.chp 4. Examples
+.cmt
+.quo                                    Realistic Examples: Project documents
+.quo                          are much more convincing if they include
+.quo                          realistic examples from the project's context.
+.cmt
+.quo                                    {i/Andreas Ruping}
+.quo                                    Agile Documentation
+.quo                                    John Wiley, 2003
+.cmt
+.cmt
+The complete set of features can be found in the [[file:][doc/qwe-catalog.qwe]]. There
+you'll find, with detail, all features and elements of the language, both for
+end users and for extension developers.
+
+.sec 4.1. QWE Documents
+These examples will show you how {t/QWE} can be used to write documents along
+with a given programming language.
+
+.par C/C++
+.todo COMPLETE!
+.Li1 [[file:][test/HelloWorld.cc.qweb]]: the classical example
+.Li1 [[file:][VarSubst.cc.qweb]] shows how variable substitution works in {t/QWEB}
+.Li1 [[file:][test/wc.c.qweb]]: another classic, {e/word counting}
+
+.par Java
+.todo MAKE IT !!
+.li1 [[file:][test/HelloWorld.java.qweb]]: the Java version
+
+.par Makefile
+.todo MAKE IT!!
+.li1 [[file:][Makefile]] Used to {t/Elisp}-compile {t/QWE}
+
+.par Text files
+
+.Li1 [[file:COPYING.qwe][COPYING]] conditions
+.Li1 [[file:][NEWS]], user-visible changes
+
+.sec 4.2. QWEB system
+.todo TO BE WRITTEN
+At the moment, please consult the [[file:doc/qweb-manual.txt][QWEB manual]] and the mandatory [[file:test/HelloWorld.cc.qweb][Hello World]]
+example for {t/C++}.
+
+
+.chp 5. Implementations
+.cmt
+.quo                                    The cost of maintaining a software
+.quo                          system is proportional to the effectiveness of
+.quo                          the documentation which describes what the
+.quo                          system does as well as the logic used to
+.quo                          accomplish its tasks. To ensure that
+.quo                          documentation is up to date, procedures should
+.quo                          be put in place to encourage the use of
+.quo                          adequate resource for the updating of documents
+.quo                          concurrent with system updates.
+.cmt
+.quo                                    {i/Penny Grubb and Armstrong Takang}
+.quo                                    Software Maintenance: Concepts and Practice, 2003
+.cmt
+.cmt
+.sec 5.1. QWE for Emacs
+This section is aimed to {t/elisp} developers, and curious people in general,
+willing to develop, maintain or just to know how {t/QWE} for Emacs is organized:
+
+.li1 [[file:][src/qwe.el]] Main {t/QWE} file, implementation starting point. It defines, in
+.li1 the current implementation of {t/QWE} for {t/Emacs}, the minor mode that must be
+.li1 used in conjunction with a major mode. The later is usually
+.li1 automatically set by {t/Emacs} depending of the filename extension.
+
+Once the first interaction with {t/Emacs} has been established, it is necessary
+to define all {t/QWE} data structures, language elements and extension mechanism:
+
+.li1 [[file:][src/qwe-lang.el]] contains a set of constant and variables used by other
+.li1 modules or extensions to work with {t/QWE} syntax constructions, regular
+.li1 expressions and other elements.
+
+.li1 [[file:][src/qwe-section.el]] provides a way to work with sectioning elements,
+.li1 management and numbering.
+
+.li1 [[file:][src/qwe-link.el]] is a hypertext mechanism implemented from scratch to support
+.li1 several types of links: links to anchors, sectioning elements, files,
+.li1 and every link supported by an external browser.
+
+.li1 [[file:][src/qwe-exi.el]] is the extension point to be used by new extensions
+.li1 (currently under heavy development)
+
+Some core extensions are also needed at this point
+
+.li1 [[file:][ext/qwe-cfg.el]] implements a configuration mechanism ({t/Emacs} customization
+.li1 items could be used, of course, but they are not portable to other
+.li1 {t/IDE}s). See the [[elisp:(beginning-of-buffer)][beginning of this file]] to have an idea of what a
+.li1 configuration item is.
+
+.li1 [[file:][ext/qwe-toc.el]] implements a convenient way to update tables of contents,
+.li1 both in the file and in the menu bar.
+
+Other are optional:
+
+.li1 [[file:][ext/qwe-hdr.el]] is a very little extension used to update config items
+.li1 contained in a header's file using data of other config items coming
+.li1 from an external file.
+
+.li1 [[file:][ext/qweb.el]] is the {t/QWE} {t/WEB} extensions, a literate programming system
+.li1 implemented on top of {t/QWE}
+
+Files needed to interact with {t/Emacs} graphical user interface are:
+
+.li1 [[file:][src/qwe-face.el]], which defines all faces used
+
+.li1 [[file:][src/qwe-font-lock.el]], contains all font-lock code, somehow the core of
+.li1 the graphical appearance of {t/QWE} elements
+
+.li1 [[file:][src/qwe-ui.el]], the user interface of {t/QWE} for {t/Emacs}
+
+
+.sec 5.2. QWE on the command line
+Many work could be implemented in other, common programming language to do
+tasks as document generation, format conversion (pdf, {t/LaTeX}, HTML, etc), {t/QWEB}
+program extraction, etc. That is, the command line interface should be the
+central point in which other extensions could take advantage of document
+parsing, configuration setup and other data structures and methods to deal
+with {t/QWE} documents.
+
+If you are a skilled {t/C/C++} programmer willing to aid in the implementation
+and design of these concepts, please contact the author. There is nothing
+currently implemented, so it is a good moment to start to work.
+
+Take a look at the specification document [[file:][draft/qwe-spec-0.9.5.qwe]] if you
+think you could help to develop such utilities.
+
+
+.sec 5.3. Other implementations
+This section is aimed to developers, and IDE experts in general, willing to
+develop, maintain and support {t/QWE} for {e/<your-preferred-IDE>}.
+
+{t/QWE} is not limited to {t/Emacs}, but to any IDE or text editor which support:
+
+.li1 Syntax highlighting, according to a programming language: {t/C/C++}, {t/Java},
+.li1 {t/Bash}, {t/Makefile}, {t/Ada}, {t/Python}, etc.
+
+.li1 The ability to define syntax highlighting rules according to a set of
+.li1 regular expressions
+
+.li1 Font rendering, with several different font families and sizes
+
+.li1 Some sort of extensibility mechanism to write more or less complex programs,
+.li1 including text processing and user events handling (mouse, keyboard,
+.li1 etc).
+
+.li1 Image support
+
+.li1 Sound regular expression support will be a plus
+
+If you are interested to implement {t/QWE} for another IDE or editor, please
+contact the author. He will be really interested on your work, and will also
+help you to understand and develop the main concepts and ideas, check
+requirements and test your implementation. (Suggestion: keep in mind that the
+name can also be read as {e/`QWE's not WEB for Eclipse'} ;-) Consult the current
+{t/QWE} specification, [[file:][draft/qwe-spec-0.9.5.qwe]], in case you are really
+interested.
+
+On the other hand, the author is interested to read your comments and
+suggestions, and to integrate additonal improvements to existing
+implementations, if you send appropriate patches.
+
+If there were more than two different implementations, additional effords
+should be put to maintain compatibility between them, and to coordinate,
+manage and update current specifications.
+
+
+.#appendix
+.chp A. Other files
+.cmt
+.quo                                    One of the weaknesses of
+.quo                          technological society is that we sometimes
+.quo                          place far too much emphasis on
+.quo                          originality. Creativity and originality are
+.quo                          obviously valuable wherever there is room for
+.quo                          improvement, and they are essential when
+.quo                          dealing with problems for which we have no
+.quo                          adequate solution.
+.cmt
+.quo                                    {i/David Parnas}
+.quo                                    Why Software Jewels Are Rare
+.quo                                    Computer, February 1996
+.cmt
+.cmt
+These are files containing additional information:
+
+.li1 [[file:][NEWS]]
+
+.li1 [[file:][ChangeLog]], qwe-formatted
+
+.li1 [[file:COPYING.qwe][COPYING]] conditions, and its [[file:COPYING][original plain-text]] version
+
+.li1 [[file:doc/todo.qwe][TODO]] items before/after next release
+
+
+.chp B. References
+.cmt
+.quo                                  I then determined through an
+.quo                        experiment with programmers that there is a
+.quo                        causal link behind my last finding; that is,
+.quo                        the more throughly a source code file is
+.quo                        commented, the more thoroughly programmers will
+.quo                        comment when they make modifications to it.
+.cmt
+.quo                                  {i/David Marin}
+.quo                                  What Motivates Programmers to Comment?
+.cmt
+.cmt
+.sec B.1. Web Sites
+This is a list of web sites you might be interested in:
+
+.li1 [[http://www.literateprogramming.com][literateprogramming.com]] is devoted to literate programming concepts,
+.li1 with a lot of useful information. All quotations used in {t/QWE} documents
+.li1 come from this web site.
+
+.li1 [[http://www.literateprogramms.org][literateprogramms.org]] hosts a lot of literate programs in several
+.li1 programming languages, really interesting.
+
+.sec B.2. Wikipedia Articles
+There are several interesting articles at the wikipedia related to
+literate programming, software documentation and markup languages. Here
+you have a list of the (IMMO) the most useful ones and things you could
+manage with {t/QWE}.
+
+.Li1 Articles
+.Li2 [[http://en.wikipedia.org/wiki/Literate_programming][Literate programming]]
+.Li2 [[http://en.wikipedia.org/wiki/Software_documentation][Software documentation]]
+.Li2 [[http://en.wikipedia.org/wiki/RTFM][RTFM]]
+.Li2 [[http://en.wikipedia.org/wiki/Comparison_of_documentation_generators][Comparison of documentation generators]]
+.Li2 [[http://en.wikipedia.org/wiki/Lightweight_markup_language][Lightweight markup language]]
+.Li2 [[http://en.wikipedia.org/wiki/List_of_document_markup_languages][List of document markup languages]]
+.Li2 [[http://en.wikipedia.org/wiki/Markup_language][Markup language]]
+
+.Li1 Things you could manage with {t/QWE}
+.Li2 [[http://en.wikipedia.org/wiki/Algorithm][Algorithms]]
+.Li2 [[http://en.wikipedia.org/wiki/Code_snippets][Code snippets]]
+.Li2 [[http://en.wikipedia.org/wiki/Design_document][Design documents]]
+.Li2 [[http://en.wikipedia.org/wiki/Docstring][Docstrings]]
+.Li2 [[http://en.wikipedia.org/wiki/FAQ][FAQs]]
+.Li2 [[http://en.wikipedia.org/wiki/Functional_specification][Functional specifications]]
+.Li2 [[http://en.wikipedia.org/wiki/How-to][Howtos]]
+.Li2 [[http://en.wikipedia.org/wiki/Software_requirements_specification][Software requirements specifications]]
+.Li2 [[http://en.wikipedia.org/wiki/Source_Code][Source code]]
+.Li2 [[http://en.wikipedia.org/wiki/Stored_procedure][Stored procedures]]
+.Li2 [[http://en.wikipedia.org/wiki/Traceability_matrix][Traceability matrix]]
+.Li2 [[http://en.wikipedia.org/wiki/Tutorial][Tutorials]]
+.Li2 [[http://en.wikipedia.org/wiki/Use_Case][Use Cases]]
+.Li2 [[http://www.cs.aau.dk/~normark/elucidative-programming][Elucidative programs]]
+
+
+.chp C. Contributors
+.cmt
+.quo                                    In fact, a very high percentage of
+.quo                          production programs must be maintained by a
+.quo                          programmer other than the original
+.quo                          author. Failure to complete good documentation
+.quo                          puts you in a vicious, never ending circle of
+.quo                          crises.
+.cmt
+.quo                                    {i/Robert Riggs}  "Computer Systems Maintenance"
+.quo                                    in Techniques of Program and System Maintenance.
+.quo                                    QED Information Sciences, 1988
+.cmt
+.cmt
+People that contributed to {t/QWE}, extensions, discussions, etc:
+
+.li1 {b/Francesc Rocher}: author, developer and maintainer
+.li1 of {t/QWE} for {t/Emacs}
+
+.cmt _____________________________________________________________________________
+.cmt
+.cfg.footer
+.cfg.mode Local Variables:
+.cfg.mode mode: text
+.cfg.mode qwe-delimiter-tag: ""
+.cfg.mode mode: qwe
+.cfg.mode End:
+.bbx index.qwe ends here

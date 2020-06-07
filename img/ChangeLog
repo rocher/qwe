@@ -1,0 +1,37 @@
+2010-01-15  Francesc Rocher  <rocher@users.noreply.github.com>
+
+	* qwe-small.png:
+	* qwe-tiny.png: New QWE logos in small sizes, derived from
+	'qwe.svg' image.
+
+;;.ver _____________________________________________________________________________
+;;.cmt
+;;.cfg.doc.show.delimiters invisible
+;;.cfg.mode Local Variables:
+;;.cfg.mode add-log-time-zone-rule: t
+;;.cfg.mode mode: change-log
+;;.cfg.mode qwe-delimiter-tag: ""
+;;.cfg.mode mode: qwe
+;;.cfg.mode End:
+;;.ver  --------
+;;.cfg.prj.name        QWE
+;;.cfg.prj.brief       QWE's not WEB for Emacs
+;;.cfg.prj.file        {t/}ChangeLog
+;;.cfg.prj.copyright   Copyright (C) 2004-2020  Francesc Rocher
+;;.cfg.prj.license     GPL v3
+;;.cfg.prj.license++
+;;.ver This file is part of QWE.
+;;.ver
+;;.ver QWE is free software: you can redistribute it and/or modify
+;;.ver it under the terms of the GNU General Public License as published by
+;;.ver the Free Software Foundation, either version 3 of the License, or
+;;.ver (at your option) any later version.
+;;.ver
+;;.ver QWE is distributed in the hope that it will be useful,
+;;.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;.ver GNU General Public License for more details.
+;;.ver
+;;.ver You should have received a copy of the GNU General Public License
+;;.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+;;.cfg.prj.license--

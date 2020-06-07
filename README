@@ -1,0 +1,17 @@
+This is QWE -- QWE's not WEB for Emacs --
+
+QWE is a lightweight markup language aiming to improve software documentation,
+presentation and maintenance. As such, it supports document structure elements,
+format text, annotations, decorations, references, hyperlinks and image
+embedding. QWE can be used with almost *any* programming language. All language
+elements reside inside inline comments, those that start with a special
+delimiter and use a newline character to indicate the end. Thus, the same
+document is both the source code and the documentation, without previous
+conversions needed to compile.
+
+QWE is largely extensible, and include some core extensions to manage QWE
+documents, table of contents, configuration items and common headers. Also
+included is QWEB, a literate programming system implemented on top of QWE.
+
+For more information, please read file 'index.qwe', preferably under Emacs
+using `qwe-mode'.

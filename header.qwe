@@ -1,0 +1,81 @@
+.cmt
+.chp QWE Project Header
+.cmt
+.sec Files
+These files are updated automatically with [[elisp:][(qwe-hdr-update-files)]] using the
+data contained in config items defined below.
+.cmt
+.cfg.hdr.files index.qwe NEWS
+.cfg.hdr.files doc/catalog.qwe doc/qwe-spec-0.9.5.qwe doc/qweb-manual.txt doc/todo.qwe
+.cfg.hdr.files ext/qwe-cfg.el ext/qwe-hdr.el ext/qwe-toc.el ext/qweb.el
+.cfg.hdr.files src/qwe-data.el src/qwe-exi.el src/qwe-faces.el src/qwe-font-lock.el src/qwe-lang.el
+.cfg.hdr.files src/qwe-link.el src/qwe-section.el src/qwe-ui.el src/qwe.el
+.cfg.hdr.files test/HelloWorld.cc.qweb test/VarSubst.cc.qweb
+.cmt
+.cmt
+.sec Config Items
+These config items will be copied into other headers when {f/qwe-hdr-update} or
+{f/qwe-hdr-update-files} (from this buffer) is used.
+.cmt
+.cfg.prj.name           QWE
+.cfg.prj.brief          QWE's not WEB for Emacs
+.cfg.prj.version        0.9.5-pre06
+.cfg.prj.author.name    Francesc Rocher
+.cfg.prj.homepage       [[http://github.com/rocher/qwe]]
+.cfg.prj.keywords       {e/QWE, literate programming, literate software engineering,}
+.cfg.prj.keywords       {e/software documentation, documentation generation,}
+.cfg.prj.keywords       {e/lightweight markup language}
+.cmt .prj.file          <real-filename>
+.cmt .prj.file.desc     <short file description>
+.cmt .prj.compile       <when-needed>= [[elisp:(byte-compile-file (buffer-file-name))][byte-compile-file]]
+.cfg.prj.copyright      Copyright (C) 2004-2020  Francesc Rocher
+.cfg.prj.license        GPL v3
+.cfg.prj.license++
+.ver This file is part of QWE.
+.ver
+.ver QWE is free software: you can redistribute it and/or modify
+.ver it under the terms of the GNU General Public License as published by
+.ver the Free Software Foundation, either version 3 of the License, or
+.ver (at your option) any later version.
+.ver
+.ver QWE is distributed in the hope that it will be useful,
+.ver but WITHOUT ANY WARRANTY; without even the implied warranty of
+.ver MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.ver GNU General Public License for more details.
+.ver
+.ver You should have received a copy of the GNU General Public License
+.ver along with QWE.  If not, see <http://www.gnu.org/licenses/>.
+.cfg.prj.license--
+.cmt _____________________________________________________________________________
+.cmt
+.cmt
+.sec Header Template
+.cmt .header
+.cmt .prj.name           <>
+.cmt .prj.brief          <>
+.cmt .prj.version        <>
+.cmt .prj.author.name    <>
+.cmt .prj.homepage       <>
+.cmt .prj.keywords       <>
+.cmt .prj.keywords       <>
+.cmt .prj.keywords       <>
+.cmt .prj.file           <real-filename>
+.cmt .prj.file.desc      <short file description>
+.cmt .prj.compile        [[elisp:(byte-compile-file (buffer-file-name))][byte-compile-file]]
+.cmt .prj.copyright      <>
+.cmt .prj.license        <>
+.cmt .prj.license++
+.cmt <>
+.cmt .prj.license--
+.cmt .doc.style      <>
+.cmt .doc.delimiters <>
+.cmt .header         [[qwe:hdr-update][update]]
+.cmt _____________________________________________________________________________
+.cmt
+.cfg.footer
+.cfg.mode Local Variables:
+.cfg.mode mode: text
+.cfg.mode qwe-delimiter-tag: ""
+.cfg.mode mode: qwe
+.cfg.mode End:
+.bbx header.qwe ends here
