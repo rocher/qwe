@@ -1,0 +1,14 @@
+===============
+Hello world ada
+===============
+
+ada code
+-- @lp section hello, world
+more ada code
+
+---
+
+(source_file
+  (division
+    (division_type)
+    (division_name)))

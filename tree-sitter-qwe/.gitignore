@@ -1,0 +1,31 @@
+# C artifacts
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.pc
+*.exp
+*.lib
+
+# Example dirs
+/examples/*/
+
+# Grammar volatiles
+*.wasm
+*.obj
+*.o
+
+# Archives
+*.tar.gz
+*.tgz
+*.zip
+*.jar
+
+# Generated files
+grammar_qwe_ada.js
+grammar_qwe_c.js
+grammar_qwe_latex.js
+grammar_qwe_lisp.js
+grammar_qwe_python.js
+lib/

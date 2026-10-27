@@ -1,0 +1,75 @@
+[
+  {
+    "type": "division",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "division_name",
+          "named": true
+        },
+        {
+          "type": "division_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "division_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "division_type",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "division",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "--",
+    "named": false
+  },
+  {
+    "type": "@lp",
+    "named": false
+  },
+  {
+    "type": "chapter",
+    "named": false
+  },
+  {
+    "type": "part",
+    "named": false
+  },
+  {
+    "type": "section",
+    "named": false
+  },
+  {
+    "type": "subsection",
+    "named": false
+  },
+  {
+    "type": "subsubsection",
+    "named": false
+  }
+]

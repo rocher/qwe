@@ -1,0 +1,9 @@
+=================
+Hello world latex
+=================
+
+% hello, world
+
+---
+
+(source_file)
